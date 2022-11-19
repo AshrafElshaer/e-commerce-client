@@ -5,7 +5,7 @@ const CategoryPage = () => {
   const { category } = useParams();
   return (
     <>
-      <div>{category}</div>
+      <div> Category {category}</div>
     </>
   );
 };
