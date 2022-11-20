@@ -46,19 +46,19 @@ const Navbar: FC = () => {
             ${
               isMenuOpen ? "block sm:flex" : "hidden"
             } sm:justify-start sm:gap-4 sm:flex-wrap`}>
-            <li className='mb-6 flex-1'>
+            <li className='mb-8 flex-1'>
               <CategoryPreview />
             </li>
-            <li className='mb-6 flex-1'>
+            <li className='mb-8 flex-1'>
               <CategoryPreview />
             </li>
-            <li className='mb-6 flex-1'>
+            <li className='mb-8 flex-1'>
               <CategoryPreview />
             </li>
-            <li className='mb-6 flex-1'>
+            <li className='mb-8 flex-1'>
               <CategoryPreview />
             </li>
-            <li className='mb-6 flex-1'>
+            <li className='mb-8 flex-1'>
               <CategoryPreview />
             </li>
           </ul>

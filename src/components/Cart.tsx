@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 type TCartProps = {
   toggleCart: () => void;
@@ -11,15 +12,19 @@ const Cart = ({ toggleCart }: TCartProps) => {
         role='cart'
         className='max-w-sm bg-white z-10 relative top-6 ml-auto text-black p-4 rounded'>
         <div role='cartHeader' className='w-full flex justify-between'>
-          <h3>CART ( 2 )</h3>
-          <p className='cursor-pointer text-black/40 underline'>Remove all</p>
+          <h4 className='font-bold '>CART ( 2 )</h4>
+          <p className='cursor-pointer text-black/40 underline underline-offset-8 hover:text-orange transition-all'>
+            Remove all
+          </p>
         </div>
         <div>items</div>
-        <div role='cartHeader' className='w-full flex justify-between'>
-          <h3 className='text-black/40'>TOTAL</h3>
+        <div role='cartTotal' className='w-full flex justify-between mb-4'>
+          <h4 className='text-black/40'>TOTAL</h4>
           <p className='font-bold text-lg'>$ 5,396</p>
         </div>
-        <button>Checkout</button>
+        <Button buttonType='primary'>
+          checkout
+        </Button>
       </div>
       <div
         className='w-full absolute top-0 left-0 h-[92vh] bg-zinc-900/40'
