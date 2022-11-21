@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useWindowSize } from "../hooks/useWindowSize";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Cart from "./Cart";
 import CategoryPreview from "./CategoryPreview";
@@ -43,9 +42,9 @@ const Navbar: FC = () => {
           <ul
             role='mobile-navbar'
             className={`w-full bg-white absolute  text-center top-12 text-black md:hidden px-4 left-0
-            ${
-              isMenuOpen ? "block sm:flex" : "hidden"
-            } sm:justify-start sm:gap-4 sm:flex-wrap`}>
+         
+            ${isMenuOpen ? "block sm:flex" : "hidden"}
+             sm:justify-start sm:gap-4 sm:flex-wrap`}>
             <li className='mb-8 flex-1'>
               <CategoryPreview />
             </li>

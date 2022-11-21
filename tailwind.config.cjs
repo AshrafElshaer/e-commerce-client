@@ -13,11 +13,16 @@ module.exports = {
 
     extend: {
       colors: {
-        orange: "#D87D4A",
-        "light-orange": "#fbaf85",
-        gray: "#F1F1F1",
-        "light-gray": "#FAFAFA",
         white: "#FFFFFF",
+        orange: {
+          DEFAULT: "#D87D4A",
+          light: "#fbaf85",
+        },
+        gray: {
+          DEFAULT: "#F1F1F1",
+          light: "#FAFAFA",
+        },
+
         black: "#000000",
       },
       fontFamily: {
