@@ -13,8 +13,8 @@ function App() {
   return (
     <Suspense>
       <div role='body' className='w-full font-manrope'>
+        <Navbar />
         <main>
-          <Navbar />
           <Routes>
             <Route path='/'>
               <Route index element={<Home />} />
