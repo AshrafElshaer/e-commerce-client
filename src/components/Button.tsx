@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC, useEffect } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 type TBottunProps = {
   children: string;
@@ -26,7 +26,7 @@ const Button: FC<TBottunProps> = ({
 }) => {
   return (
     <button
-      className={`w-full transition-all duration-300  text-center px-4 py-2 mx-auto uppercase font-bold flex justify-center items-center gap-3 ${buttonStyles[buttonType]}`}
+      className={`w-full transition-all duration-300  text-center px-6 py-4 mx-auto uppercase font-bold flex justify-center items-center gap-3 ${buttonStyles[buttonType]}`}
       {...otherProps}>
       {children}
       {buttonType === "secondary" && <AiOutlineRight className='text-orange' />}

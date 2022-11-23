@@ -28,6 +28,15 @@ module.exports = {
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
       },
+      backgroundImage: {
+        "hero-mobile": "url('./assets/home/mobile/image-header.jpg')",
+        "hero-tablet": "url('./assets/home/tablet/image-header.jpg')",
+        "hero-desktop": "url('./assets/home/desktop/image-hero.jpg')",
+      },
+      backgroundSize: {
+        "100%": "100%",
+        "none": "0",
+      },
     },
   },
   plugins: [],

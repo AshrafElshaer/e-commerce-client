@@ -1,12 +1,11 @@
 import { FC, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Cart from "./Cart";
-import CategoryPreview from "./CategoryPreview";
+import { Cart, CategoryPreview } from "../components";
 
 const Navbar: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(true);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const toggleNavbar = () => {
     setIsMenuOpen(!isMenuOpen);
     setIsCartOpen(false);
@@ -18,8 +17,8 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <nav className=' bg-black text-white border-b-2  border-b-gray py-4'>
-        <div className='container flex gap-6 justify-between items-center relative'>
+      <nav className=' bg-black text-white py-4'>
+        <div className='container relative flex gap-6 justify-between items-center  z-50 before:content-[""] before:w-full before:h-[1px] before:absolute before:-bottom-4 before:left-0  before:bg-[#979797]'>
           <div
             className='toggle cursor-pointer md:hidden'
             onClick={toggleNavbar}>
@@ -82,8 +81,8 @@ const Navbar: FC = () => {
             <AiOutlineShoppingCart onClick={toggleCart} />
           </div>
         </div>
-        {isCartOpen ? <Cart toggleCart={toggleCart} /> : null}
       </nav>
+      {isCartOpen ? <Cart toggleCart={toggleCart} /> : null}
       <Outlet />
     </>
   );
