@@ -40,13 +40,23 @@ const Navbar: FC = () => {
           <a href='/' className='text-xl font-bold '>
             audiophile
           </a>
-          <div
+          <ul
             role='mobile-navbar'
             className={`w-full bg-white absolute min-h-screen  text-center top-12 text-black md:hidden px-4 left-0
             ${isMenuOpen ? "block sm:flex" : "hidden"}
              sm:justify-center sm:gap-4 sm:flex-wrap`}>
-            <CategoryNavigation />
-          </div>
+            {categories.map((category) => (
+              <li className="flex-1" >
+                <CategoryCard
+                  key={category.category}
+                  categoryName={category.category}
+                  image={category.categoryImage}
+                  toggleNavbar={toggleNavbar}
+                />
+              </li>
+            ))}
+            {/* <CategoryNavigation /> */}
+          </ul>
           <ul
             role='main-navbar'
             className='hidden md:flex w-full justify-center gap-8 font-bold uppercase text-xs'>
