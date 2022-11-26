@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Cart, CategoryPreview } from "../components";
+import { Cart, CategoryCard, CategoryNavigation } from "../components";
+import useCategories from "../hooks/useCategories";
 
 const Navbar: FC = () => {
+  const { categories } = useCategories();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const toggleNavbar = () => {
@@ -38,44 +40,33 @@ const Navbar: FC = () => {
           <a href='/' className='text-xl font-bold '>
             audiophile
           </a>
-          <ul
+          <div
             role='mobile-navbar'
-            className={`w-full bg-white absolute  text-center top-12 text-black md:hidden px-4 left-0
-         
+            className={`w-full bg-white absolute min-h-screen  text-center top-12 text-black md:hidden px-4 left-0
             ${isMenuOpen ? "block sm:flex" : "hidden"}
-             sm:justify-start sm:gap-4 sm:flex-wrap`}>
-            <li className='mb-8 flex-1'>
-              <CategoryPreview />
-            </li>
-            <li className='mb-8 flex-1'>
-              <CategoryPreview />
-            </li>
-            <li className='mb-8 flex-1'>
-              <CategoryPreview />
-            </li>
-            <li className='mb-8 flex-1'>
-              <CategoryPreview />
-            </li>
-            <li className='mb-8 flex-1'>
-              <CategoryPreview />
-            </li>
-          </ul>
+             sm:justify-center sm:gap-4 sm:flex-wrap`}>
+            <CategoryNavigation />
+          </div>
           <ul
             role='main-navbar'
             className='hidden md:flex w-full justify-center gap-8 font-bold uppercase text-xs'>
             <li>
-              <a
-                href=''
+              <Link
+                to='/'
                 className='cursor-pointer hover:text-orange transition-all'>
-                HOME{" "}
-              </a>
+                home
+              </Link>
             </li>
-            <li>
-              <a href=''>category 2</a>
-            </li>
-            <li>
-              <a href=''>category 3</a>
-            </li>
+
+            {categories.map((category) => (
+              <li>
+                <Link
+                  to={`/${category.category}`}
+                  className='cursor-pointer hover:text-orange transition-all'>
+                  {category.category}
+                </Link>
+              </li>
+            ))}
           </ul>
           <div className='text-xl cursor-pointer sm:ml-auto relative'>
             <AiOutlineShoppingCart onClick={toggleCart} />

@@ -10,6 +10,7 @@ export type TCategory = {
   category: string;
   categoryImage: string;
   products: TProduct[];
+  __v: number;
 };
 export type TProduct = {
   _id: string;
@@ -22,8 +23,9 @@ export type TProduct = {
   features: string;
   includes: [
     {
-      quantity: number;
+      id: string;
       item: string;
+      quantity: number;
     }
   ];
   gallery: string[];
