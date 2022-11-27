@@ -30,7 +30,7 @@ const Cart: FC<TCartProps> = ({ toggleCart }) => {
             <h4 className='text-black/40'>TOTAL</h4>
             <p className='font-bold text-lg'>$ 5,396</p>
           </div>
-          <Button buttonType='primary'>checkout</Button>
+          <Button className="w-full" buttonType='primary'>checkout</Button>
         </div>
       </div>
       <div

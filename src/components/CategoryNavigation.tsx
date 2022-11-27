@@ -11,7 +11,7 @@ const CategoryNavigation = () => {
   };
 
   return (
-    <div className='container sm:flex sm:justify-center sm:gap-12 sm:flex-wrap my-12 '>
+    <section className='container sm:flex sm:justify-center sm:gap-12 sm:flex-wrap my-12 '>
       {categories.map((cat) => {
         const { category, categoryImage, _id } = cat;
         return (
@@ -22,7 +22,7 @@ const CategoryNavigation = () => {
           />
         );
       })}
-    </div>
+    </section>
   );
 };
 

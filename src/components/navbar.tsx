@@ -18,7 +18,7 @@ const Navbar: FC = () => {
   };
 
   return (
-    <>
+    <div>
       <nav className=' bg-black text-white py-4'>
         <div className='container relative flex gap-6 justify-between items-center  z-50 before:content-[""] before:w-full before:h-[1px] before:absolute before:-bottom-4 before:left-0  before:bg-[#979797]'>
           <div
@@ -85,7 +85,8 @@ const Navbar: FC = () => {
       </nav>
       {isCartOpen ? <Cart toggleCart={toggleCart} /> : null}
       <Outlet />
-    </>
+    
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Header, CategoryNavigation } from "../components";
+import { Header, CategoryNavigation, HomePreview } from "../components";
 import { useGetCategoriesQuery } from "../features/api/apiSlice";
 import useCategories from "../hooks/useCategories";
 const Home = () => {
@@ -18,7 +18,10 @@ const Home = () => {
   return (
     <>
       <Header />
-      <CategoryNavigation />
+      <main className='container'>
+        <HomePreview />
+        <CategoryNavigation />
+      </main>
     </>
   );
 };

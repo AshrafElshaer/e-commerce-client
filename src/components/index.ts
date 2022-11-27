@@ -5,4 +5,5 @@ export { default as Cart } from "./Cart";
 export { default as CartItem } from "./CartItem";
 export { default as CategoryCard } from "./CategoryCard";
 export { default as CategoryNavigation } from "./CategoryNavigation";
+export { default as HomePreview } from "./HomePreview";
 export { default as Footer } from "./Footer";

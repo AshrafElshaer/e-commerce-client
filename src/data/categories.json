@@ -2,7 +2,7 @@
   {
     "_id": "63741abf0490cb9b435c69ec",
     "category": "headphones",
-    "categoryImage": "../assets/shared/desktop/image-category-thumbnail-headphones.png",
+    "categoryImage": "src/assets/shared/desktop/image-category-thumbnail-headphones.png",
     "products": [
       {
         "slug": "xx59-headphones",
@@ -132,7 +132,7 @@
   {
     "_id": "63741abf0490cb9b435c69ea",
     "category": "earphones",
-    "categoryImage": "../assets/shared/desktop/image-category-thumbnail-earphones.png",
+    "categoryImage": "src/assets/shared/desktop/image-category-thumbnail-earphones.png",
     "products": [
       {
         "slug": "yx1-earphones",
@@ -184,7 +184,7 @@
   {
     "_id": "63741abf0490cb9b435c69ee",
     "category": "speakers",
-    "categoryImage": "../assets/shared/desktop/image-category-thumbnail-speakers.png",
+    "categoryImage": "src/assets/shared/desktop/image-category-thumbnail-speakers.png",
     "products": [
       {
         "slug": "zx9-speaker",

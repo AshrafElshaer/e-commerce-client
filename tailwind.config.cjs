@@ -21,6 +21,7 @@ module.exports = {
         gray: {
           DEFAULT: "#F1F1F1",
           light: "#FAFAFA",
+          dark: "#4C4C4C",
         },
 
         black: "#000000",
@@ -35,7 +36,7 @@ module.exports = {
       },
       backgroundSize: {
         "100%": "100%",
-        "none": "0",
+        none: "0",
       },
     },
   },
