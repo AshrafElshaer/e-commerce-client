@@ -1,9 +1,91 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import { CategoryNavigation, AboutUs } from "../components";
+import useCategories from "../hooks/useCategories";
+import {
+  AiFillFacebook,
+  AiOutlineTwitter,
+  AiOutlineInstagram,
+} from "react-icons/ai";
 
 const Footer = () => {
+  const { categories } = useCategories();
   return (
-    <div>Footer</div>
-  )
-}
+    <>
+      <div className='container'>
+        <CategoryNavigation />
+        <AboutUs />
+      </div>
+      <footer className='bg-black text-white text-center sm:text-left'>
+        <div className='container'>
+          <div className=' w-full md:flex md:items-center'>
+            <Link to='/'>
+              <h1 className='font-bold text-xl'>audiophile</h1>
+            </Link>
+            <ul
+              role='main-navbar'
+              className='  w-full sm:flex sm:justify-start md:justify-end gap-8 font-bold uppercase text-xs'>
+              <li>
+                <Link
+                  to='/'
+                  className='cursor-pointer hover:text-orange transition-all'>
+                  home
+                </Link>
+              </li>
+              {categories.map((category) => (
+                <li>
+                  <Link
+                    to={`/${category.category}`}
+                    className='cursor-pointer hover:text-orange transition-all'>
+                    {category.category}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p className='text-gray/70'>
+            Audiophile is an all in one stop to fulfill your audio needs. We're
+            a small team of music lovers and sound specialists who are devoted
+            to helping you get the most out of personal audio. Come and visit
+            our demo facility - we’re open 7 days a week.
+          </p>
 
-export default Footer
+          <div className='sm:flex justify-between items-center'>
+            <p className='text-gray/70'>Copyright 2021. All Rights Reserved</p>
+            <ul className='flex justify-center gap-4 text-3xl'>
+              <li>
+                <a
+                  href='http://'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hover:text-orange transition-all'>
+                  <AiFillFacebook />
+                </a>
+              </li>
+              <li>
+                <a
+                  href='http://'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hover:text-orange transition-all'>
+                  <AiOutlineTwitter />
+                </a>
+              </li>
+              <li>
+                <a
+                  href='http://'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hover:text-orange transition-all'>
+                  <AiOutlineInstagram />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export default Footer;

@@ -55,7 +55,7 @@ const Navbar: FC = () => {
                 />
               </li>
             ))}
-            {/* <CategoryNavigation /> */}
+            
           </ul>
           <ul
             role='main-navbar'
