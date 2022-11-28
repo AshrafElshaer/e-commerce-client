@@ -12,26 +12,26 @@ export type TCategory = {
   products: TProduct[];
   __v: number;
 };
+
 export type TProduct = {
   _id: string;
-  slug: string;
   name: string;
+  slug: string;
   image: string;
   new: boolean;
   price: number;
-  description: string;
   features: string;
-  includes: [
-    {
-      id: string;
-      item: string;
-      quantity: number;
-    }
-  ];
+  includes: {
+    quantity: number;
+    item: string;
+    _id: string;
+  }[];
   gallery: string[];
   count: number;
   sold: number;
 };
+
+
 
 const initialState: CategoriesState = {
   categories: null,

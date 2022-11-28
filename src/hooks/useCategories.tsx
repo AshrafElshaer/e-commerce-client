@@ -3,7 +3,7 @@ import { TCategory } from "../features/categories/categoriesSlice";
 import data from "../data/categories.json";
 
 const useCategories = () => {
-  const [categories, setCategories] = useState(data);
+  const [categories, setCategories] = useState<TCategory[]>(data);
 
   //   const fetchCategories = async () => {
   //     return await fetch("http://localhost:8080/categories")
@@ -11,9 +11,9 @@ const useCategories = () => {
   //       .then((data) => setCategories(data));
   //   };
 
-//   useEffect(() => {
-//     console.log(categories);
-//   }, []);
+  //   useEffect(() => {
+  //     console.log(categories);
+  //   }, []);
 
   return { categories };
 };
