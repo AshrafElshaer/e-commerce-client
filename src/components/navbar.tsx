@@ -46,7 +46,7 @@ const Navbar: FC = () => {
             ${isMenuOpen ? "block sm:flex" : "hidden"}
              sm:justify-center sm:gap-4 sm:flex-wrap`}>
             {categories.map((category) => (
-              <li className="flex-1" >
+              <li className='flex-1' key={category.category}>
                 <CategoryCard
                   key={category.category}
                   categoryName={category.category}
@@ -55,7 +55,6 @@ const Navbar: FC = () => {
                 />
               </li>
             ))}
-            
           </ul>
           <ul
             role='main-navbar'
@@ -69,7 +68,7 @@ const Navbar: FC = () => {
             </li>
 
             {categories.map((category) => (
-              <li>
+              <li key={category.category}>
                 <Link
                   to={`/${category.category}`}
                   className='cursor-pointer hover:text-orange transition-all'>
@@ -85,7 +84,6 @@ const Navbar: FC = () => {
       </nav>
       {isCartOpen ? <Cart toggleCart={toggleCart} /> : null}
       <Outlet />
-    
     </div>
   );
 };
