@@ -23,3 +23,6 @@
       }
     }
   }
+  html{
+    scroll-behavior: smooth;
+  }

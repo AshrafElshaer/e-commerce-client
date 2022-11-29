@@ -5,7 +5,9 @@ const CategoryPage = () => {
   const { category } = useParams();
   return (
     <>
-      <div> Category {category}</div>
+      <div className="w-full bg-black text-center py-24">
+        <h2 className="text-white text-4xl uppercase">{category}</h2>
+         Category </div>
     </>
   );
 };

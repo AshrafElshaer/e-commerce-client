@@ -6,6 +6,7 @@ import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 import { apiSlice } from "./features/api/apiSlice";
 import { store } from "./app/store";
 import { BrowserRouter } from "react-router-dom";
+import { ScrollToTop } from "./components";
 
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <Provider store={store}>
         <ApiProvider api={apiSlice}>
+          <ScrollToTop />
           <App />
         </ApiProvider>
       </Provider>

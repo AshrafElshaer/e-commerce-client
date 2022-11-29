@@ -7,4 +7,5 @@ export { default as CategoryCard } from "./CategoryCard";
 export { default as CategoryNavigation } from "./CategoryNavigation";
 export { default as HomePreview } from "./HomePreview";
 export { default as AboutUs } from "./AboutUs";
+export { default as ScrollToTop } from "./ScrollToTop";
 export { default as Footer } from "./Footer";
