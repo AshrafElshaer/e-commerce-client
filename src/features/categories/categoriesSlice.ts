@@ -16,9 +16,10 @@ export type TCategory = {
 export type TProduct = {
   _id: string;
   name: string;
+  description: string;
   slug: string;
   image: string;
-  new: boolean;
+  isNew: boolean;
   price: number;
   features: string;
   includes: {
@@ -30,8 +31,6 @@ export type TProduct = {
   count: number;
   sold: number;
 };
-
-
 
 const initialState: CategoriesState = {
   categories: null,
