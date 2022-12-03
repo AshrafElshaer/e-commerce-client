@@ -11,13 +11,7 @@ const CategoryPage = () => {
       <div className='w-full bg-black text-center py-24'>
         <h2 className='text-white text-4xl uppercase'>{category}</h2>
       </div>
-      {/* {categories.map((cat) => {
-        if (cat.category === category) {
-          cat.products.map((product) => (
-            <div key={product._id}>{product.name}</div>
-          ));
-        }
-      })} */}
+    
       {categories.map(
         (cat) =>
           cat.category === category &&

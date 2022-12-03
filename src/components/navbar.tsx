@@ -4,7 +4,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Cart, CategoryCard, CategoryNavigation } from "../components";
 import useCategories from "../hooks/useCategories";
 
-const Navbar: FC = () => {
+const Navbar = () => {
   const { categories } = useCategories();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);

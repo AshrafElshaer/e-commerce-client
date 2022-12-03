@@ -5,7 +5,6 @@ const Header = () => {
       <div className='container px-0'>
         <header className='text-white text-center lg:text-left py-44 h-[729px] bg-hero-mobile bg-no-repeat bg-100% bg-center md:bg-hero-tablet lg:bg-none'>
           <div
-            role='content'
             className='flex flex-col gap-10 w-96 mx-auto lg:mx-0 px-4'>
             <span className='text-gray/40 tracking-[1rem] text-sm  '>
               NEW PRODUCT

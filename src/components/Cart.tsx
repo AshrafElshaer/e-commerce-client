@@ -5,7 +5,7 @@ type TCartProps = {
   toggleCart: () => void;
 };
 
-const Cart: FC<TCartProps> = ({ toggleCart }) => {
+const Cart = ({ toggleCart }: TCartProps) => {
   return (
     <>
       <div className='container relative'>
