@@ -23,6 +23,7 @@ function App() {
                 <Route path=':productId' element={<ProductPage />} />
               </Route>
               <Route path='auth' element={<Authentication />} />
+              <Route path='/no-match' element={<NoMatch />} />
               <Route path='*' element={<NoMatch />} />
             </Route>
           </Routes>
