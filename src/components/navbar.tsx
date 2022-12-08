@@ -21,7 +21,7 @@ const Navbar = () => {
     <div>
       <nav className=' bg-black text-white py-4'>
         <div className='container relative flex gap-6 justify-between items-center  z-50 before:content-[""] before:w-full before:h-[1px] before:absolute before:-bottom-4 before:left-0  before:bg-[#979797]'>
-          <div
+          <button
             className='toggle cursor-pointer md:hidden'
             onClick={toggleNavbar}>
             <span
@@ -36,7 +36,7 @@ const Navbar = () => {
               className={`w-6 h-0.5 bg-white block transition-all ${
                 isMenuOpen && "-rotate-45 -translate-y-2"
               }`}></span>
-          </div>
+          </button>
           <a href='/' className='text-xl font-bold '>
             audiophile
           </a>
@@ -77,9 +77,11 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className='text-xl cursor-pointer sm:ml-auto relative'>
-            <AiOutlineShoppingCart onClick={toggleCart} />
-          </div>
+          <button
+            className='text-xl cursor-pointer sm:ml-auto relative'
+            onClick={toggleCart}>
+            <AiOutlineShoppingCart />
+          </button>
         </div>
       </nav>
       {isCartOpen ? <Cart toggleCart={toggleCart} /> : null}

@@ -1,11 +1,5 @@
 import { useEffect } from "react";
-import {
-  Link,
-  useLocation,
-  useParams,
-  redirect,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { Button } from "../components";
 import useCategories from "../hooks/useCategories";
 

@@ -1,9 +1,8 @@
-
 const AboutUs = () => {
   return (
     <section className='flex flex-col gap-8 md:flex-row-reverse text-center lg:text-left my-24'>
       <img
-        src='src/assets/shared/mobile/image-best-gear.jpg'
+        src='/src/assets/shared/mobile/image-best-gear.jpg'
         alt='best-gear'
         className='rounded-lg sm:hidden'
       />
