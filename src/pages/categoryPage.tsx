@@ -34,8 +34,8 @@ const CategoryPage = () => {
                 alt={product.name}
                 className=' w-96 aspect-square mx-auto md:mx-0 md:flex-1 rounded-lg'
               />
+              {/* description */}
               <div
-                role='content'
                 className='flex flex-col gap-6 w-96 mx-auto lg:mx-0 px-4 text-center lg:text-left md:flex-1 mt-8'>
                 {product.isNew && (
                   <span className='text-orange tracking-[1rem] text-sm  '>
