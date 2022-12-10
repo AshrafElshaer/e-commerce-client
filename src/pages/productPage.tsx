@@ -97,7 +97,6 @@ const ProductPage = () => {
               />
             ))}
           </section>
-
           {/* you may also like  */}
         </div>
       )}

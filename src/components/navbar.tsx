@@ -1,11 +1,12 @@
-import { FC, useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Cart, CategoryCard, CategoryNavigation } from "../components";
+import { Cart, CategoryCard } from "../components";
 import useCategories from "../hooks/useCategories";
 
 const Navbar = () => {
   const { categories } = useCategories();
+  const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const toggleNavbar = () => {
@@ -16,6 +17,10 @@ const Navbar = () => {
     setIsCartOpen(!isCartOpen);
     setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    console.log(pathname);
+  }, [pathname]);
 
   return (
     <div>
@@ -40,8 +45,8 @@ const Navbar = () => {
           <a href='/' className='text-xl font-bold '>
             audiophile
           </a>
+          {/* MOBILE NAVBAR */}
           <ul
-            role='mobile-navbar'
             className={`w-full bg-white absolute min-h-screen  text-center top-12 text-black md:hidden px-4 left-0
             ${isMenuOpen ? "block sm:flex" : "hidden"}
              sm:justify-center sm:gap-4 sm:flex-wrap`}>
@@ -56,13 +61,15 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+
+          {/* DESKTOP NAVBAR */}
           <ul
             role='main-navbar'
             className='hidden md:flex w-full justify-center gap-8 font-bold uppercase text-xs'>
             <li>
               <Link
                 to='/'
-                className='cursor-pointer hover:text-orange transition-all'>
+                className='cursor-pointer hover:text-orange transition-all '>
                 home
               </Link>
             </li>
@@ -71,7 +78,11 @@ const Navbar = () => {
               <li key={category.category}>
                 <Link
                   to={`/${category.category}`}
-                  className='cursor-pointer hover:text-orange transition-all'>
+                  className={`cursor-pointer hover:text-orange transition-all ${
+                    pathname.includes(`/${category.category}`)
+                      ? "text-orange"
+                      : "not-working"
+                  }`}>
                   {category.category}
                 </Link>
               </li>
