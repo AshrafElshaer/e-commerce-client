@@ -24,7 +24,7 @@ const ProductPage = () => {
       {/* product display */}
       {foundProduct && (
         <div>
-          <div
+          <section
             className={`md:flex justify-between items-center md:gap-10 lg:gap-16 my-8`}>
             <img
               src={foundProduct.image}
@@ -32,8 +32,7 @@ const ProductPage = () => {
               className=' w-96 aspect-square mx-auto md:mx-0 md:flex-1 rounded-lg'
             />
             {/* description */}
-            <div
-              className='flex flex-col gap-6 w-96 mx-auto lg:mx-0 px-4 text-center lg:text-left md:flex-1 mt-8'>
+            <div className='flex flex-col gap-6 w-96 mx-auto lg:mx-0 px-4 text-center lg:text-left md:flex-1 mt-8'>
               {foundProduct.isNew && (
                 <span className='text-orange tracking-[1rem] text-sm  '>
                   NEW PRODUCT
@@ -60,35 +59,44 @@ const ProductPage = () => {
                 <Button className='flex-1 md:flex-auto'> ADD TO CART</Button>
               </div>
             </div>
-          </div>
+          </section>
           {/* features */}
-          <div className='my-16 lg:flex'>
+          <section className='my-16 lg:flex'>
             <div className='flex-1'>
               <h2 className='mb-8 text-2xl'>FEATURES</h2>
               {foundProduct.features.split("\n\n").map((paragraph, idx) => (
-                <p key={idx} className='block mb-4'>
+                <p key={idx} className='block mb-4 text-black/70'>
                   {paragraph}
                 </p>
               ))}
             </div>
             <div className='mt-12 flex flex-col flex-1 md:gap-48 md:flex-row lg:flex-col lg:gap-0 lg:ml-auto '>
               <h2 className='text-2xl mb-4 lg:ml-auto mr-14'>IN THE BOX</h2>
-              <ul className="lg:ml-auto">
+              <ul className='lg:ml-auto'>
                 {foundProduct.includes.map((item) => (
-                  <li key={item._id} className='mb-2'>
-                    {" "}
-                    <span className='text-orange mr-2 '>
-                      {item.quantity}X
-                    </span>{" "}
+                  <li key={item._id} className='mb-2 text-black/70'>
+                    <span className='text-orange mr-2 '>{item.quantity}X</span>
                     {item.item}
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
+          </section>
           {/* gallary */}
-
-
+          <section className='  sm:grid grid-cols-2 grid-rows-2 gap-4 '>
+            {foundProduct.gallery.map((img, idx) => (
+              <img
+                src={img}
+                key={idx}
+                alt={foundProduct.name}
+                className={`rounded-lg w-full h-full my-4 sm:my-0 ${
+                  idx === 0 ? "row-span-1 col-span-1" : ""
+                } ${
+                  idx === 1 ? "col-start-1 col-end-2 row-start-2 row-end-3" : ""
+                } ${idx === 2 ? "row-span-full " : ""}`}
+              />
+            ))}
+          </section>
 
           {/* you may also like  */}
         </div>
