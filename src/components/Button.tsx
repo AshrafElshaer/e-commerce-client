@@ -1,7 +1,7 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 type TBottunProps = {
-  children: string;
+  children: string | ReactNode;
   className?: string;
   buttonType?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;

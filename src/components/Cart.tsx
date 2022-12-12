@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { Button, CartItem } from "../components";
 
 type TCartProps = {
@@ -31,7 +32,7 @@ const Cart = ({ toggleCart }: TCartProps) => {
             <p className='font-bold text-lg'>$ 5,396</p>
           </div>
           <Button className='w-full' buttonType='primary'>
-            checkout
+            <Link to='chekout'>checkout</Link>
           </Button>
         </div>
       </div>

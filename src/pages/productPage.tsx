@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "../components";
+import { TProduct } from "../features/categories/categoriesSlice";
 import useCategories from "../hooks/useCategories";
 
 const ProductPage = () => {
@@ -10,6 +11,40 @@ const ProductPage = () => {
   const foundProduct = categories
     .find((cat) => cat.category === category)
     ?.products.find((product) => product._id === productId);
+
+  const youMayAlsoLike = categories
+    .find((cat) => cat.category === category)
+    ?.products.filter((product) => product._id !== foundProduct?._id)
+    .slice(0, 3);
+
+  const getMultipleRandom = (arr: TProduct[], num: number): TProduct[] => {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+
+    return shuffled.slice(0, num);
+  };
+
+  if (youMayAlsoLike && youMayAlsoLike?.length < 3) {
+    const exitingProductsIds = youMayAlsoLike?.map((product) => product._id);
+
+    const allProducts: TProduct[] = [];
+
+    // make array of all products and filter them to take out the main product and the products we have in you may also like state to complete the array to 3 product
+    categories.map((category) =>
+      category.products.map((product) => {
+        if (
+          product._id !== foundProduct?._id &&
+          !exitingProductsIds.includes(product._id)
+        ) {
+          allProducts.push(product);
+        }
+      })
+    );
+    const newYouMayAlsoLike = getMultipleRandom(
+      allProducts,
+      3 - youMayAlsoLike.length
+    );
+    youMayAlsoLike.push(...newYouMayAlsoLike);
+  }
 
   useEffect(() => {
     !foundProduct ? navigate("/no-match") : null;
@@ -98,6 +133,49 @@ const ProductPage = () => {
             ))}
           </section>
           {/* you may also like  */}
+          <section className='my-8'>
+            <h2 className='uppercase text-3xl text-center my-16'>
+              you may also like
+            </h2>
+            <div className='flex flex-wrap justify-center gap-8'>
+              {youMayAlsoLike
+                ? youMayAlsoLike.map((productYouMightLike) => {
+                    let categoryName: string = "";
+                    const getCategoryName = categories.map((category) =>
+                      category.products.map((product) => {
+                        if (product._id === productYouMightLike._id) {
+                          return (categoryName = category.category);
+                        }
+                        return;
+                      })
+                    );
+                    const productName = productYouMightLike.name.split(" ");
+                    return (
+                      <div
+                        key={productYouMightLike._id}
+                        className='w-60 sm:flex-1 text-center '>
+                        <img
+                          src={productYouMightLike.image}
+                          alt={productYouMightLike.name}
+                          className='rounded-lg'
+                        />
+                        <h3 className='my-4 text-xl'>
+                          {productName
+                            .slice(0, productName.length - 1)
+                            .join(" ")}
+                        </h3>
+                        <Button>
+                          <Link
+                            to={`/${categoryName}/${productYouMightLike._id}`}>
+                            see product
+                          </Link>
+                        </Button>
+                      </div>
+                    );
+                  })
+                : null}
+            </div>
+          </section>
         </div>
       )}
     </div>

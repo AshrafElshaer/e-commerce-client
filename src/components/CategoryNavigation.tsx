@@ -7,7 +7,7 @@ const CategoryNavigation = () => {
   const { categories } = useCategories();
 
   const selectedCategories = () => {
-    if (categories.length <= 4) return categories;
+    if (categories.length < 4) return categories;
   };
 
   return (

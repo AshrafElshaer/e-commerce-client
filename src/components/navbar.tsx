@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Cart, CategoryCard } from "../components";
@@ -17,10 +17,6 @@ const Navbar = () => {
     setIsCartOpen(!isCartOpen);
     setIsMenuOpen(false);
   };
-
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
 
   return (
     <div>
