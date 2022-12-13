@@ -52,10 +52,10 @@ const ProductPage = () => {
 
   return (
     <div className='container'>
-      <Link to={`/${category}`} className='block my-8 '>
+      <button onClick={()=> navigate(-1)} className='block my-8 '>
         {" "}
         Go Back
-      </Link>
+      </button>
       {/* product display */}
       {foundProduct && (
         <div>
