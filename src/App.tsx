@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Footer, Navbar } from "./components";
 import "./index.css";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const Home = lazy(() => import("./pages/Home"));
@@ -23,12 +24,13 @@ function App() {
                 <Route path=':productId' element={<ProductPage />} />
               </Route>
               <Route path='auth' element={<Authentication />} />
+              <Route path='checkout' element={<Checkout />} />
               <Route path='/no-match' element={<NoMatch />} />
               <Route path='*' element={<NoMatch />} />
             </Route>
           </Routes>
-          <Footer />
         </main>
+        <Footer />
       </div>
     </Suspense>
   );

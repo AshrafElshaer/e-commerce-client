@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { Button } from "../components";
+import { Button, AboutUs } from "../components";
 import { TProduct } from "../features/categories/categoriesSlice";
 import useCategories from "../hooks/useCategories";
 
@@ -43,7 +43,7 @@ const ProductPage = () => {
       allProducts,
       3 - youMayAlsoLike.length
     );
-    youMayAlsoLike.push(...newYouMayAlsoLike);
+    youMayAlsoLike.concat(newYouMayAlsoLike);
   }
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const ProductPage = () => {
 
   return (
     <div className='container'>
-      <button onClick={()=> navigate(-1)} className='block my-8 '>
+      <button onClick={() => navigate(-1)} className='block my-8 '>
         {" "}
         Go Back
       </button>
@@ -178,6 +178,7 @@ const ProductPage = () => {
           </section>
         </div>
       )}
+      <AboutUs />
     </div>
   );
 };

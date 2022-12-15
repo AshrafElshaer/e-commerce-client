@@ -31,13 +31,13 @@ const Cart = ({ toggleCart }: TCartProps) => {
             <h4 className='text-black/40'>TOTAL</h4>
             <p className='font-bold text-lg'>$ 5,396</p>
           </div>
-          <Button className='w-full' buttonType='primary'>
-            <Link to='chekout'>checkout</Link>
+          <Button className='w-full' buttonType='primary' onClick={toggleCart}>
+            <Link to='checkout'>checkout</Link>
           </Button>
         </div>
       </div>
       <div
-        className='w-full absolute top-0 left-0 h-screen bg-zinc-900/40 z-10'
+        className='w-full absolute top-0 left-0 h-screen bg-zinc-900/40 z-10 '
         onClick={toggleCart}></div>
     </>
   );

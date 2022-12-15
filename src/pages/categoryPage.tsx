@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
-import { Button } from "../components";
+import { Button , AboutUs} from "../components";
 import useCategories from "../hooks/useCategories";
 
 const CategoryPage = () => {
@@ -52,6 +52,7 @@ const CategoryPage = () => {
               </div>
             </div>
           ))}
+          <AboutUs />
     </>
   );
 };
