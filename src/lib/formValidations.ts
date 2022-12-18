@@ -1,6 +1,5 @@
 import * as yup from "yup";
 
-
 export const checkOutValidation = yup.object({
   name: yup.string().required("Required"),
   email: yup.string().email("Invalid Email Format").required("Required"),
@@ -16,5 +15,3 @@ export const checkOutValidation = yup.object({
   country: yup.string().required("Required"),
   paymentMethod: yup.string(),
 });
-
-

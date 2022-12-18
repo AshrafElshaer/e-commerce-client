@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, useFormikContext } from "formik";
 import Input from "../components/Form/Input";
 import { Button, FormikControl } from "../components";
 import { checkOutValidation } from "../lib/formValidations";
@@ -10,7 +10,7 @@ export type TCheckoutFormState = {
   email: string;
   phoneNumber: number | string;
   address: string;
-  zipcide: number | string;
+  zipcode: number | string;
   city: string;
   country: string;
   paymentMethod: string;
@@ -25,7 +25,7 @@ const initialValues: TCheckoutFormState = {
   email: "",
   phoneNumber: "",
   address: "",
-  zipcide: "",
+  zipcode: "",
   city: "",
   country: "",
   paymentMethod: "creditCard",
@@ -36,12 +36,13 @@ const checkoutOptions = [
   { key: "Cash On Delivery", value: "cash" },
 ];
 
-const onSubmit = (values: TCheckoutFormState): void => {
-  console.log(values);
-};
-
 const Checkout = () => {
   const navigate = useNavigate();
+  // const { handleSubmit , values} = useFormikContext();
+
+  const onSubmit = (values: TCheckoutFormState): void => {
+    console.log(values);
+  };
   return (
     <div className='bg-gray'>
       <button
@@ -50,7 +51,7 @@ const Checkout = () => {
         {" "}
         Go Back
       </button>
-      <div className='container flex  gap-8 pb-24'>
+      <div className='container flex flex-col md:flex-row  gap-8 pb-24'>
         {/* CHECKOUT FORM*/}
         <section className='flex-[2]'>
           <div className='bg-white p-10 rounded-lg shadow-lg'>
@@ -62,11 +63,11 @@ const Checkout = () => {
               validationSchema={checkOutValidation}>
               {(Formik) => {
                 return (
-                  <Form>
+                  <Form id='checkout'>
                     <h2 className='text-orange my-8 uppercase tracking-wider'>
                       Billing Details
                     </h2>
-                    <div className='flex flex-wrap flex-grow-0 gap-4'>
+                    <div className='md:flex flex-wrap flex-grow-0 gap-4'>
                       <FormikControl
                         control='text'
                         name='name'
@@ -95,7 +96,7 @@ const Checkout = () => {
                     <h2 className='text-orange my-8 uppercase tracking-wider'>
                       shipping info
                     </h2>
-                    <div className='flex flex-wrap flex-grow-0 gap-4'>
+                    <div className='md:flex flex-wrap flex-grow-0 gap-4'>
                       <FormikControl
                         control='text'
                         name='address'
@@ -133,7 +134,7 @@ const Checkout = () => {
                     <h2 className='text-orange my-8 uppercase tracking-wider'>
                       payment details{" "}
                     </h2>
-                    <div className='flex w-full'>
+                    <div className='md:flex w-full'>
                       <p className='flex-1'>Payment Method</p>
                       <div className='flex-1'>
                         <FormikControl
@@ -183,7 +184,9 @@ const Checkout = () => {
             <span className='text-black/40 uppercase'>grand total</span>
             <span className='text-bold text-xl text-orange'>$ 5,446</span>
           </div>
-          <Button className='w-full'>CONTINUE & PAY</Button>
+          <Button type='submit' form='checkout' className='w-full'>
+            CONTINUE & PAY
+          </Button>
         </section>
       </div>
     </div>
