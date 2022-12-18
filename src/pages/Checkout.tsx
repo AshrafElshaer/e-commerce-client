@@ -1,9 +1,23 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Formik, Field, Form, useFormikContext } from "formik";
-import Input from "../components/Form/Input";
+import { Formik, Form, FormikHelpers, useFormikContext } from "formik";
 import { Button, FormikControl } from "../components";
 import { checkOutValidation } from "../lib/formValidations";
+import { ConnectedFocusError } from "focus-formik-error";
+
+// resetForm: function resetForm(nextState)​
+// setErrors: function setErrors(errors)​
+// setFieldError: function setFieldError(field, value)​
+// setFieldTouched: function useEventCallback()​
+// setFieldValue: function useEventCallback()​
+// setFormikState: function setFormikState(stateOrCb)​
+// setStatus: function setStatus(status)​
+// setSubmitting: function setSubmitting(isSubmitting)​
+// setTouched: function useEventCallback()​
+// setValues: function useEventCallback()​
+// submitForm: function useEventCallback()​
+// validateField: function useEventCallback()​
+// validateForm: function useEventCallback()
 
 export type TCheckoutFormState = {
   name: string;
@@ -38,11 +52,11 @@ const checkoutOptions = [
 
 const Checkout = () => {
   const navigate = useNavigate();
-  // const { handleSubmit , values} = useFormikContext();
 
-  const onSubmit = (values: TCheckoutFormState): void => {
-    console.log(values);
-  };
+  const onSubmit = (
+    values: TCheckoutFormState,
+    { resetForm }: FormikHelpers<TCheckoutFormState>
+  ): void | Promise<any> => {};
   return (
     <div className='bg-gray'>
       <button
@@ -145,6 +159,7 @@ const Checkout = () => {
                         />
                       </div>
                     </div>
+                    <ConnectedFocusError />
                   </Form>
                 );
               }}
@@ -153,7 +168,7 @@ const Checkout = () => {
         </section>
 
         {/* CART SUMMARY  */}
-        <section className='bg-white rounded-lg flex-1 h-fit p-6'>
+        <section className='bg-white rounded-lg flex-1 h-fit p-6 shadow-lg'>
           <h3 className='uppercase'>summary</h3>
 
           <div className='flex justify-start items-center gap-6 my-6'>
