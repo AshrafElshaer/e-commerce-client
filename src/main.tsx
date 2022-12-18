@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <Provider store={store}>
         <ApiProvider api={apiSlice}>
-          <ScrollToTop />
+          {/* <ScrollToTop /> */}
           <App />
         </ApiProvider>
       </Provider>

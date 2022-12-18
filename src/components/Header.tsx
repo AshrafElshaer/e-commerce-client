@@ -15,7 +15,7 @@ const Header = () => {
             </p>
             <Button className='w-44 lg:mx-0'>SEE PRODUCT</Button>
           </div>
-          <div role='img'></div>
+          <div role='backgroundImg'></div>
         </header>
       </div>
     </div>

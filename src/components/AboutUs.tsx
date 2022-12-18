@@ -11,12 +11,12 @@ const AboutUs = () => {
           className='rounded-lg sm:hidden'
         />
         <img
-          src='src/assets/shared/tablet/image-best-gear.jpg'
+          src='/src/assets/shared/tablet/image-best-gear.jpg'
           alt='best-gear'
           className='rounded-lg hidden sm:block md:hidden'
         />
         <img
-          src='src/assets/shared/desktop/image-best-gear.jpg'
+          src='/src/assets/shared/desktop/image-best-gear.jpg'
           alt='best-gear'
           className='rounded-lg hidden w-1/2 md:block'
         />

@@ -1,8 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button, AboutUs } from "../components";
 import { TProduct } from "../features/categories/categoriesSlice";
 import useCategories from "../hooks/useCategories";
+
+const getMultipleRandom = (arr: TProduct[], num: number): TProduct[] => {
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+
+  return shuffled.slice(0, num);
+};
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -12,47 +18,46 @@ const ProductPage = () => {
     .find((cat) => cat.category === category)
     ?.products.find((product) => product._id === productId);
 
-  const youMayAlsoLike = categories
+  const youMayAlsoLikeArray = categories
     .find((cat) => cat.category === category)
     ?.products.filter((product) => product._id !== foundProduct?._id)
     .slice(0, 3);
 
-  const getMultipleRandom = (arr: TProduct[], num: number): TProduct[] => {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  const makeNewYouMayLike = () => {
+    const exittingYouMayLike = youMayAlsoLikeArray?.map((item) => item._id);
+    const allProducts = [];
 
-    return shuffled.slice(0, num);
-  };
-
-  if (youMayAlsoLike && youMayAlsoLike?.length < 3) {
-    const exitingProductsIds = youMayAlsoLike?.map((product) => product._id);
-
-    const allProducts: TProduct[] = [];
-
-    // make array of all products and filter them to take out the main product and the products we have in you may also like state to complete the array to 3 product
-    categories.map((category) =>
-      category.products.map((product) => {
+    for (const category of categories) {
+      for (const product of category.products) {
         if (
           product._id !== foundProduct?._id &&
-          !exitingProductsIds.includes(product._id)
+          !exittingYouMayLike?.includes(product._id)
         ) {
           allProducts.push(product);
         }
-      })
-    );
-    const newYouMayAlsoLike = getMultipleRandom(
-      allProducts,
-      3 - youMayAlsoLike.length
-    );
-    youMayAlsoLike.concat(newYouMayAlsoLike);
-  }
+      }
+    }
+
+    const getRandonProducts =
+      youMayAlsoLikeArray !== undefined
+        ? getMultipleRandom(allProducts, 3 - youMayAlsoLikeArray.length)
+        : [];
+    return youMayAlsoLikeArray?.concat(getRandonProducts);
+  };
+
+  const youMayAlsoLike = makeNewYouMayLike();
 
   useEffect(() => {
-    !foundProduct ? navigate("/no-match") : null;
-  }, []);
+    // makeNewYouMayLike();
+    console.log(youMayAlsoLike);
+  }, [productId]);
 
   return (
     <div className='container'>
-      <button onClick={() => navigate(-1)} className='block my-8 '>
+      {/* <h1 className='text-5xl'>hello from product page</h1> */}
+      <button
+        onClick={() => navigate(-1)}
+        className='block my-8 hover:text-orange'>
         {" "}
         Go Back
       </button>
@@ -164,12 +169,10 @@ const ProductPage = () => {
                             .slice(0, productName.length - 1)
                             .join(" ")}
                         </h3>
-                        <Button>
-                          <Link
-                            to={`/${categoryName}/${productYouMightLike._id}`}>
-                            see product
-                          </Link>
-                        </Button>
+                        <Link
+                          to={`/${categoryName}/${productYouMightLike._id}`}>
+                          <Button>see product</Button>
+                        </Link>
                       </div>
                     );
                   })

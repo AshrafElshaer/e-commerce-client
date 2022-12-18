@@ -9,3 +9,4 @@ export { default as HomePreview } from "./HomePreview";
 export { default as AboutUs } from "./AboutUs";
 export { default as ScrollToTop } from "./ScrollToTop";
 export { default as Footer } from "./Footer";
+export { default as FormikControl } from "./Form/FormikControl";

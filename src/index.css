@@ -2,30 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
+  .container {
+    @apply px-4 w-full max-w-6xl mx-auto;
+  }
+}
+@layer base {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+  input[type="radio"] {
+    appearance: none;
+    background-color: #fff;
+    display: grid;
+    place-content: center;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 0.15em solid #d1d5db;
+    border-radius: 50%;
+  }
+  input[type="radio"]::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #d87d4a;
+  }
 
-    .container{
-        @apply px-4 w-full max-w-6xl mx-auto ;
-    }
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
 }
 @layer utilities {
-    @variants responsive {
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-      }
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
 
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-      }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hide {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
     }
   }
-  html{
-    scroll-behavior: smooth;
-  }
-  h1 , h2 , h3 {
-    font-weight: bold;
-  }
+}
+html {
+  scroll-behavior: smooth;
+}
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}

@@ -29,7 +29,7 @@ const Button = ({
 }: TBottunProps) => {
   return (
     <button
-      className={` transition-all duration-300  text-center text-sm px-6 py-[0.75rem] mx-auto uppercase font-bold flex justify-center items-center gap-3 ${buttonStyles[buttonType]} ${className}`}
+      className={` transition-all duration-300  text-center text-sm px-6 py-[0.75rem] mx-auto uppercase font-bold flex justify-center items-center gap-3 ${buttonStyles[buttonType]} ${className && className}`}
       {...otherProps}>
       {children}
       {buttonType === "secondary" && <AiOutlineRight className='text-orange' />}

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
-import { Button , AboutUs} from "../components";
+import { Button, AboutUs } from '../components'
 import useCategories from "../hooks/useCategories";
 
 const CategoryPage = () => {
@@ -35,8 +35,7 @@ const CategoryPage = () => {
                 className=' w-96 aspect-square mx-auto md:mx-0 md:flex-1 rounded-lg'
               />
               {/* description */}
-              <div
-                className='flex flex-col gap-6 w-96 mx-auto lg:mx-0 px-4 text-center lg:text-left md:flex-1 mt-8'>
+              <div className='flex flex-col gap-6 w-96 mx-auto lg:mx-0 px-4 text-center lg:text-left md:flex-1 mt-8'>
                 {product.isNew && (
                   <span className='text-orange tracking-[1rem] text-sm  '>
                     NEW PRODUCT
@@ -52,7 +51,7 @@ const CategoryPage = () => {
               </div>
             </div>
           ))}
-          <AboutUs />
+      <AboutUs />
     </>
   );
 };

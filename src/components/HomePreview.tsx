@@ -11,7 +11,7 @@ const HomePreview = () => {
             after:content-[""] after:w-[200%] after:-translate-x-1/2 after:-translate-y-1/2  after:aspect-square after:border  after:border-white/50 after:absolute after:top-[50%] after:left-[50%] after:rounded-full after:z-0
             '>
           <img
-            src='src/assets/home/mobile/image-speaker-zx9.png'
+            src='/src/assets/home/mobile/image-speaker-zx9.png'
             alt='speaker-zx9'
             className='w-48 sm:scale-[1.65] relative top-10  z-10'
           />
@@ -31,17 +31,17 @@ const HomePreview = () => {
       </div>
       <div className='w-full h-80 rounded-md overflow-hidden relative flex flex-row-reverse text-center'>
         <img
-          src='src/assets/home/mobile/image-speaker-zx7.jpg'
+          src='/src/assets/home/mobile/image-speaker-zx7.jpg'
           alt='speaker-zx7'
           className='w-full sm:hidden relative right-0'
         />
         <img
-          src='src/assets/home/tablet/image-speaker-zx7.jpg'
+          src='/src/assets/home/tablet/image-speaker-zx7.jpg'
           alt='speaker-zx7'
           className='w-full hidden sm:block lg:hidden relative right-0'
         />
         <img
-          src='src/assets/home/desktop/image-speaker-zx7.jpg'
+          src='/src/assets/home/desktop/image-speaker-zx7.jpg'
           alt='speaker-zx7'
           className='w-full hidden lg:block relative right-0'
         />
@@ -55,7 +55,7 @@ const HomePreview = () => {
       </div>
       <div className='flex flex-col gap-4 sm:flex-row sm:h-80'>
         <img
-          src='src/assets/home/mobile/image-earphones-yx1.jpg'
+          src='/src/assets/home/mobile/image-earphones-yx1.jpg'
           alt='earphones-yx1'
           className='flex-1 w-full rounded-lg'
         />
