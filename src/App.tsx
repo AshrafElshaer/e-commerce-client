@@ -9,7 +9,7 @@ function App() {
   const CategoryPage = lazy(() => import("./pages/CategoryPage"));
   const ProductPage = lazy(() => import("./pages/ProductPage"));
   const Authentication = lazy(() => import("./pages/Authentication"));
-  const NoMatch = lazy(() => import("./pages/noMatch"));
+  const NoMatch = lazy(() => import("./pages/NoMatch"));
 
   return (
     <Suspense>

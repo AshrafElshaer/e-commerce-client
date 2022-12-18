@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import Input from "../components/Form/Input";
 import { Button, FormikControl } from "../components";
-import { checkOutValidation } from "../lib/checkoutFormValidation";
+import { checkOutValidation } from "../lib/formValidations";
 
 export type TCheckoutFormState = {
   name: string;

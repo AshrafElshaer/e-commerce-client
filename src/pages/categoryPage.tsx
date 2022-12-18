@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
-import { Button, AboutUs } from '../components'
+import { Button, AboutUs } from "../components";
 import useCategories from "../hooks/useCategories";
+import NoMatch from "./NoMatch";
 
 const CategoryPage = () => {
   const navigate = useNavigate();
@@ -10,9 +10,10 @@ const CategoryPage = () => {
   const { categories } = useCategories();
   const foundCategory = categories.find((cat) => cat.category === category);
 
-  useEffect(() => {
-    !foundCategory ? navigate("/no-match") : null;
-  }, []);
+  if (!foundCategory) {
+    return <NoMatch />;
+  }
+
   return (
     <>
       <div className='w-full bg-black text-center py-24'>
