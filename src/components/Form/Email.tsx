@@ -23,7 +23,7 @@ export type TInputProps = {
   options?: TCheckoutOptions;
 };
 
-const Input = (props: TInputProps) => {
+const Email = (props: TInputProps) => {
   const {
     label,
     name,
@@ -38,19 +38,18 @@ const Input = (props: TInputProps) => {
 
   useEffect(() => {
     errors && touched && errors[name] && touched[name] ? setIsError(true) : setIsError(false);
-    // console.log(rest)
   }, [errors, touched]);
 
   return (
-    <div className={`${styles} min-w-[45%] flex-grow-0`}>
+    <div className={`${styles} min-w-[45%] flex-grow-0 mb-4`}>
       <label htmlFor={name} className='flex justify-start my-2'>
-        <span className={` w- ${isError ? "text-red-600" : ""}`}>{label}</span>
+        <span className={`${isError ? "text-red-600" : ""}`}>{label}</span>
         <ErrorMessage name={name}>
           {(errMsg) => <span className='ml-auto text-red-600'> {errMsg} </span>}
         </ErrorMessage>
       </label>
       <Field
-        type={control}
+        type='email'
         id={name}
         name={name}
         placeholder={placeholder}
@@ -64,4 +63,4 @@ const Input = (props: TInputProps) => {
   );
 };
 
-export default Input;
+export default Email;

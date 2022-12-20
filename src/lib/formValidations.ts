@@ -15,3 +15,16 @@ export const checkOutValidation = yup.object({
   country: yup.string().required("Required"),
   paymentMethod: yup.string(),
 });
+
+export const loginValidation = yup.object({
+  email: yup.string().email("Invalid Email Format").required("Required"),
+  password: yup.string().required("Required").min(6),
+});
+export const signupValidation = yup.object({
+  email: yup.string().email("Invalid Email Format").required("Required"),
+  password: yup.string().required("Required").min(6),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Required"),
+});

@@ -1,6 +1,4 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { CategoryNavigation, AboutUs } from "../components";
 import useCategories from "../hooks/useCategories";
 import {
   AiFillFacebook,
@@ -14,12 +12,12 @@ const Footer = () => {
     <footer className='bg-black text-white text-center sm:text-left py-14'>
       <div className='container'>
         <div className=' w-full md:flex md:items-center mb-8'>
-          <Link to='/'>
-            <h1 className='font-bold text-xl mb-12 md:mb-0'>audiophile</h1>
-          </Link>
-          <ul
-            role='main-navbar'
-            className='  w-full flex flex-col gap-4 sm:flex-row sm:justify-start md:justify-end md:gap-8 font-bold uppercase text-xs'>
+          <div className=" inline-block relative before:content-[''] before:w-full before:h-2 before:bg-orange before:absolute before:left-0 before:-top-14">
+            <Link to='/'>
+              <h1 className='font-bold  text-xl mb-12 md:mb-0 '>audiophile</h1>
+            </Link>
+          </div>
+          <ul className='  w-full flex flex-col gap-4 sm:flex-row sm:justify-start md:justify-end md:gap-8 font-bold uppercase text-xs'>
             <li>
               <Link
                 to='/'
