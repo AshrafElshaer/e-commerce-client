@@ -1,9 +1,11 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from "react";
+import { IconType } from "react-icons";
 import { AiOutlineRight } from "react-icons/ai";
 type TBottunProps = {
   children: string | ReactNode;
   className?: string;
   buttonType?: string;
+  Icon?: IconType;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 type TButtonStyles = {
@@ -25,14 +27,20 @@ const Button = ({
   children,
   buttonType = "primary",
   className,
+  Icon,
   ...otherProps
 }: TBottunProps) => {
   return (
     <button
-      className={` transition-all duration-300  text-center text-sm px-6 py-[0.75rem] mx-auto uppercase font-bold flex justify-center items-center gap-3 ${buttonStyles[buttonType]} ${className && className}`}
+      className={` transition-all duration-300  text-sm px-6 py-[0.75rem] mx-auto uppercase font-bold flex justify-center gap-3 ${
+        buttonStyles[buttonType]
+      } ${className && className}`}
       {...otherProps}>
+      {Icon ? <Icon className='text-lg' /> : null}
       {children}
-      {buttonType === "secondary" && <AiOutlineRight className='text-orange' />}
+      {buttonType === "secondary" ? (
+        <AiOutlineRight className='text-orange' />
+      ) : null}
     </button>
   );
 };
