@@ -20,7 +20,9 @@ const CategoryPage = () => {
   return (
     <>
       <div className='w-full bg-black text-center py-24'>
-        <h2 className='text-white text-4xl uppercase'>{category}</h2>
+        <h2 className='text-white text-4xl uppercase'>
+          {foundCategory?.category}
+        </h2>
       </div>
 
       {foundCategory &&

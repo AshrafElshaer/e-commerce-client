@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Button, Login, SignUp } from "../components";
 import { AiOutlineGoogle, AiFillApple } from "react-icons/ai";
+import { BsFacebook } from "react-icons/bs";
 
 const Authentication = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   return (
     <section className='bg-gray'>
-      <div className='container grid place-items-center h-[80vh]'>
+      <div className='container grid place-items-center min-h-[90vh]'>
         {/* <h1>Authentication</h1> */}
         <div className='w-96 '>
           {isNewUser ? <SignUp /> : <Login />}
@@ -29,7 +30,7 @@ const Authentication = () => {
               </span>
             </p>
           )}
-          <div className='text-center mt-8 flex flex-col gap-2'>
+          <div className='text-center mt-8 flex flex-col gap-4'>
             <span>Or</span>
             <Button className='w-full rounded-full' Icon={AiOutlineGoogle}>
               Login With Google
@@ -39,6 +40,12 @@ const Authentication = () => {
               buttonType='black'
               Icon={AiFillApple}>
               Login With Apple
+            </Button>
+            <Button
+              className='w-full rounded-full'
+              buttonType='blue'
+              Icon={BsFacebook}>
+              Login With Facebook
             </Button>
           </div>
         </div>

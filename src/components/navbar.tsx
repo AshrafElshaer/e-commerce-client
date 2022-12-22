@@ -84,8 +84,9 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+          <Link to='auth' className="font-bold uppercase text-xs ml-auto">Login</Link>
           <button
-            className='text-xl cursor-pointer sm:ml-auto relative'
+            className='text-xl cursor-pointer relative'
             onClick={toggleCart}>
             <AiOutlineShoppingCart />
           </button>

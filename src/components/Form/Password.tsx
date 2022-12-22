@@ -82,7 +82,11 @@ const Password = (props: TInputProps) => {
             <span
               className='absolute right-2 cursor-pointer text-xl top-1/2 -translate-y-1/2'
               onClick={toggleShowPassword}>
-              {isVisible ? <AiFillEyeInvisible /> : <AiFillEye />}
+              {isVisible ? (
+                <AiFillEyeInvisible className='text-black/50' />
+              ) : (
+                <AiFillEye className='text-black/50' />
+              )}
             </span>
           </div>
         )}

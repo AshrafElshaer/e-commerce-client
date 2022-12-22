@@ -20,6 +20,7 @@ const buttonStyles: TButtonStyles = {
   outline:
     "text-black bg-transperent border border-black hover:bg-black hover:text-white",
   black: "text-white bg-black hover:bg-gray-dark",
+  blue: "text-white bg-blue-500 hover:bg-blue-300",
   secondary: "text-black hover:text-orange",
 };
 

@@ -13,7 +13,9 @@ const getMultipleRandom = (arr: TProduct[], num: number): TProduct[] => {
 const ProductPage = () => {
   const navigate = useNavigate();
   const { productId, category } = useParams();
+  const [quantity, setQuantity] = useState(1);
   const { categories } = useCategories();
+
   const foundProduct = categories
     .find((cat) => cat.category === category)
     ?.products.find((product) => product._id === productId);
@@ -22,7 +24,9 @@ const ProductPage = () => {
     .find((cat) => cat.category === category)
     ?.products.filter((product) => product._id !== foundProduct?._id)
     .slice(0, 3);
-
+  const incrementQuantity = () => setQuantity((prev) => prev + 1);
+  const decrementQuantity = () =>
+    setQuantity((prev) => (prev === 1 ? prev : prev - 1));
   const makeNewYouMayLike = () => {
     const exittingYouMayLike = youMayAlsoLikeArray?.map((item) => item._id);
     const allProducts = [];
@@ -92,9 +96,18 @@ const ProductPage = () => {
               </p>
               <div className='flex justify-between gap-4 w-full'>
                 <div className='flex justify-center items-center px-6 py-[0.75rem] bg-gray rounded gap-6 flex-1'>
-                  <button className='text-black/40 hover:text-orange'>-</button>
-                  {/* QTY */}3
-                  <button className='text-black/40 hover:text-orange'>+</button>
+                  <button
+                    className='text-black/40 hover:text-orange text-xl'
+                    onClick={decrementQuantity}>
+                    -
+                  </button>
+                  {/* QTY */}
+                  {quantity}
+                  <button
+                    className='text-black/40 hover:text-orange text-xl'
+                    onClick={incrementQuantity}>
+                    +
+                  </button>
                 </div>
                 <Button className='flex-1 md:flex-auto'> ADD TO CART</Button>
               </div>
