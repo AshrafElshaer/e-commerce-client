@@ -7,7 +7,7 @@ const Authentication = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   return (
     <section className='bg-gray'>
-      <div className='container grid place-items-center min-h-[90vh]'>
+      <div className='container grid place-items-center py-16'>
         {/* <h1>Authentication</h1> */}
         <div className='w-96 '>
           {isNewUser ? <SignUp /> : <Login />}

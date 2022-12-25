@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
 import { Button, AboutUs } from "../components";
+import { addToCart } from "../features/cart/cartSlice";
 import { TProduct } from "../features/categories/categoriesSlice";
 import useCategories from "../hooks/useCategories";
+import { formatPrice } from "../lib/formating";
 
 const getMultipleRandom = (arr: TProduct[], num: number): TProduct[] => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -12,6 +15,7 @@ const getMultipleRandom = (arr: TProduct[], num: number): TProduct[] => {
 
 const ProductPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { productId, category } = useParams();
   const [quantity, setQuantity] = useState(1);
   const { categories } = useCategories();
@@ -24,9 +28,27 @@ const ProductPage = () => {
     .find((cat) => cat.category === category)
     ?.products.filter((product) => product._id !== foundProduct?._id)
     .slice(0, 3);
+
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
+
   const decrementQuantity = () =>
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
+
+  const addItemToCart = () => {
+    if (foundProduct) {
+      dispatch(
+        addToCart({
+          _id: foundProduct._id,
+          name: foundProduct.name.split(" ").slice(0, -1).join(" "),
+          image: foundProduct.image,
+          price: foundProduct.price,
+          quantity,
+        })
+      );
+    } else {
+      return;
+    }
+  };
   const makeNewYouMayLike = () => {
     const exittingYouMayLike = youMayAlsoLikeArray?.map((item) => item._id);
     const allProducts = [];
@@ -52,8 +74,7 @@ const ProductPage = () => {
   const youMayAlsoLike = makeNewYouMayLike();
 
   useEffect(() => {
-    // makeNewYouMayLike();
-    console.log(youMayAlsoLike);
+    setQuantity(1);
   }, [productId]);
 
   return (
@@ -87,12 +108,7 @@ const ProductPage = () => {
               </h1>
               <p className='text-black/70'>{foundProduct.description}</p>
               <p className='text-lg font-bold'>
-                ${" "}
-                {foundProduct.price.toLocaleString(
-                  undefined, // leave undefined to use the visitor's browser
-                  // locale or a string like 'en-US' to override it.
-                  { minimumFractionDigits: 2 }
-                )}
+                {formatPrice(foundProduct.price)}
               </p>
               <div className='flex justify-between gap-4 w-full'>
                 <div className='flex justify-center items-center px-6 py-[0.75rem] bg-gray rounded gap-6 flex-1'>
@@ -109,7 +125,10 @@ const ProductPage = () => {
                     +
                   </button>
                 </div>
-                <Button className='flex-1 md:flex-auto'> ADD TO CART</Button>
+                <Button className='flex-1 md:flex-auto' onClick={addItemToCart}>
+                  {" "}
+                  ADD TO CART
+                </Button>
               </div>
             </div>
           </section>
@@ -167,7 +186,7 @@ const ProductPage = () => {
                         return;
                       })
                     );
-                    const productName = productYouMightLike.name.split(" ");
+
                     return (
                       <div
                         key={productYouMightLike._id}
@@ -178,8 +197,9 @@ const ProductPage = () => {
                           className='rounded-lg'
                         />
                         <h3 className='my-4 text-xl'>
-                          {productName
-                            .slice(0, productName.length - 1)
+                          {productYouMightLike.name
+                            .split(" ")
+                            .slice(0, -1)
                             .join(" ")}
                         </h3>
                         <Link

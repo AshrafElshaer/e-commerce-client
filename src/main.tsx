@@ -8,16 +8,15 @@ import { store } from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 import { ScrollToTop } from "./components";
 
-
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <ApiProvider api={apiSlice}>
+      <ApiProvider api={apiSlice}>
+        <Provider store={store}>
           {/* <ScrollToTop /> */}
           <App />
-        </ApiProvider>
-      </Provider>
+        </Provider>
+      </ApiProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

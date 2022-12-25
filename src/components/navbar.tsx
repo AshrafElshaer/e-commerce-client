@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Cart, CategoryCard } from "../components";
 import useCategories from "../hooks/useCategories";
+import { useAppSelector } from "../app/hooks";
+import { selectCartCount } from "../features/cart/cartSlice";
 
 const Navbar = () => {
   const { categories } = useCategories();
   const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const cartCount = useAppSelector(selectCartCount);
+
   const toggleNavbar = () => {
     setIsMenuOpen(!isMenuOpen);
     setIsCartOpen(false);
@@ -17,6 +21,25 @@ const Navbar = () => {
     setIsCartOpen(!isCartOpen);
     setIsMenuOpen(false);
   };
+  function disableScroll() {
+    // To get the scroll position of current webpage
+    const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const LeftScroll =
+      window.pageXOffset || document.documentElement.scrollLeft;
+
+    // if scroll happens, set it to the previous value
+    window.onscroll = function () {
+      window.scrollTo(LeftScroll, TopScroll);
+    };
+  }
+
+  function enableScroll() {
+    window.onscroll = function () {};
+  }
+
+  useEffect(() => {
+    isCartOpen ? disableScroll() : enableScroll();
+  }, [isCartOpen]);
 
   return (
     <div>
@@ -84,9 +107,16 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <Link to='auth' className="font-bold uppercase text-xs ml-auto">Login</Link>
+          <Link to='auth' className='font-bold uppercase text-xs ml-auto'>
+            Login
+          </Link>
           <button
-            className='text-xl cursor-pointer relative'
+            data-cartcount={cartCount}
+            className={`text-xl cursor-pointer relative ${
+              cartCount
+                ? "before:content-[attr(data-cartcount)] before:w-full before:h-full before:bg-orange before:absolute before:-top-3 before:-right-3 before:rounded-full before:text-xs before:grid before:content-center"
+                : ""
+            }  `}
             onClick={toggleCart}>
             <AiOutlineShoppingCart />
           </button>

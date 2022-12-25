@@ -33,9 +33,9 @@ const Button = ({
 }: TBottunProps) => {
   return (
     <button
-      className={` transition-all duration-300  text-sm px-6 py-[0.75rem] mx-auto uppercase font-bold flex justify-center gap-3 ${
-        buttonStyles[buttonType]
-      } ${className && className}`}
+      className={` transition-all duration-300  text-sm px-6 py-[0.75rem] mx-auto uppercase font-bold flex justify-center gap-3 
+      ${buttonStyles[buttonType]} ${className ? className : ""} 
+      ${Icon ? "" : "items-center"}`}
       {...otherProps}>
       {Icon ? <Icon className='text-lg' /> : null}
       {children}
