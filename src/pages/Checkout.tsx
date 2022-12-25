@@ -1,23 +1,11 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form, FormikHelpers, useFormikContext } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import { Button, FormikControl } from "../components";
 import { checkOutValidation } from "../lib/formValidations";
 import { ConnectedFocusError } from "focus-formik-error";
-
-// resetForm: function resetForm(nextState)​
-// setErrors: function setErrors(errors)​
-// setFieldError: function setFieldError(field, value)​
-// setFieldTouched: function useEventCallback()​
-// setFieldValue: function useEventCallback()​
-// setFormikState: function setFormikState(stateOrCb)​
-// setStatus: function setStatus(status)​
-// setSubmitting: function setSubmitting(isSubmitting)​
-// setTouched: function useEventCallback()​
-// setValues: function useEventCallback()​
-// submitForm: function useEventCallback()​
-// validateField: function useEventCallback()​
-// validateForm: function useEventCallback()
+import { useAppSelector } from "../app/hooks";
+import { selectCart, selectCartTotal } from "../features/cart/cartSlice";
+import { formatPrice } from "../lib/formating";
 
 export type TCheckoutFormState = {
   name: string;
@@ -52,6 +40,11 @@ const checkoutOptions = [
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const cartSelector = useAppSelector(selectCartTotal);
+  const cartItems = useAppSelector(selectCart);
+  const cartTotal = formatPrice(cartSelector);
+  const VAT = formatPrice(cartSelector * 0.0825);
+  const grandTotal = formatPrice(cartSelector + cartSelector * 0.0825 + 50);
 
   const onSubmit = (
     values: TCheckoutFormState,
@@ -170,34 +163,38 @@ const Checkout = () => {
         {/* CART SUMMARY  */}
         <section className='bg-white rounded-lg flex-1 h-fit p-6 shadow-lg'>
           <h3 className='uppercase'>summary</h3>
-
-          <div className='flex justify-start items-center gap-6 my-6'>
-            <img
-              src='/src/assets/cart/image-xx59-headphones.jpg'
-              alt=''
-              className='w-16 rounded-md'
-            />
-            <div>
-              <h4 className='text-xl font-bold'>name</h4>
-              <p className='text-black/40'>$ price</p>
+          {/* //////////////////////// */}
+          {cartItems.map((item, idx) => (
+            <div className='flex justify-start items-center gap-6 my-6'>
+              <img
+                src={item.image}
+                alt={item.name}
+                className='w-16 rounded-md'
+              />
+              <div>
+                <h4 className='text-xl font-bold'>{item.name}</h4>
+                <p className='text-black/40'>{formatPrice(item.price)}</p>
+              </div>
+              <span className='ml-auto text-black/40'>X {item.quantity}</span>
             </div>
-            <span className='ml-auto text-black/40'>{/* cart count */}X 3</span>
-          </div>
+          ))}
+
+          {/* //////////////////////// */}
           <div className='flex justify-between mb-2'>
             <span className='text-black/40 uppercase'>total</span>
-            <span className='text-bold text-xl'>$ 5,396</span>
+            <span className='text-bold text-xl'>{cartTotal}</span>
           </div>
           <div className='flex justify-between mb-2'>
             <span className='text-black/40 uppercase'>shipping</span>
-            <span className='text-bold text-xl'>$ 50</span>
+            <span className='text-bold text-xl'>$50</span>
           </div>
           <div className='flex justify-between mb-2'>
             <span className='text-black/40 uppercase'>vat(8.25%)</span>
-            <span className='text-bold text-xl'>$ 1,079</span>
+            <span className='text-bold text-xl'>{VAT}</span>
           </div>
           <div className='flex justify-between mb-8'>
             <span className='text-black/40 uppercase'>grand total</span>
-            <span className='text-bold text-xl text-orange'>$ 5,446</span>
+            <span className='text-bold text-xl text-orange'>{grandTotal}</span>
           </div>
           <Button type='submit' form='checkout' className='w-full'>
             CONTINUE & PAY
