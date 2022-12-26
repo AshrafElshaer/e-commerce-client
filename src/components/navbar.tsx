@@ -4,7 +4,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Cart, CategoryCard } from "../components";
 import useCategories from "../hooks/useCategories";
 import { useAppSelector } from "../app/hooks";
-import { selectCartCount } from "../features/cart/cartSlice";
+import { selectCartCount } from "../features/cartSlice";
 
 const Navbar = () => {
   const { categories } = useCategories();

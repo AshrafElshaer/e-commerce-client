@@ -1,0 +1,17 @@
+{
+  "orderId": "orderId",
+  "createdAt": "date",
+  "customer": {
+    "id": "id",
+    "name": "name",
+    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874"
+    }
+  },
+  "items": [],
+  "status": "pending",
+  "total": "total"
+}

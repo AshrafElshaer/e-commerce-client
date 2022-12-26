@@ -4,7 +4,7 @@ import { Button, FormikControl } from "../components";
 import { checkOutValidation } from "../lib/formValidations";
 import { ConnectedFocusError } from "focus-formik-error";
 import { useAppSelector } from "../app/hooks";
-import { selectCart, selectCartTotal } from "../features/cart/cartSlice";
+import { selectCart, selectCartTotal } from "../features/cartSlice";
 import { formatPrice } from "../lib/formating";
 
 export type TCheckoutFormState = {

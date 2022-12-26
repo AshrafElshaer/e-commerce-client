@@ -6,7 +6,7 @@ import {
   selectCart,
   selectCartCount,
   selectCartTotal,
-} from "../features/cart/cartSlice";
+} from "../features/cartSlice";
 import { formatPrice } from "../lib/formating";
 
 type TCartProps = {

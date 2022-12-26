@@ -5,6 +5,7 @@ import { BsFacebook } from "react-icons/bs";
 
 const Authentication = () => {
   const [isNewUser, setIsNewUser] = useState(false);
+
   return (
     <section className='bg-gray'>
       <div className='container grid place-items-center py-16'>

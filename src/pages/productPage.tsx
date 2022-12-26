@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { Button, AboutUs } from "../components";
-import { addToCart } from "../features/cart/cartSlice";
-import { TProduct } from "../features/categories/categoriesSlice";
+import { addToCart } from "../features/cartSlice";
+import { TProduct } from "../features/categoriesSlice";
 import useCategories from "../hooks/useCategories";
 import { formatPrice } from "../lib/formating";
 

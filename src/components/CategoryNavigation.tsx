@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useCategories from "../hooks/useCategories";
 import { CategoryCard } from "../components";
-import { TCategory } from "../features/categories/categoriesSlice";
+import { TCategory } from "../features/categoriesSlice";
 
 const CategoryNavigation = () => {
   const { categories } = useCategories();

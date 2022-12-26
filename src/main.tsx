@@ -8,6 +8,9 @@ import { store, persistor } from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 import { ScrollToTop } from "./components";
 import { PersistGate } from "redux-persist/integration/react";
+import { categoriesApiSlice } from "./features/categoriesSlice";
+
+// store.dispatch(categoriesApiSlice.endpoints.getCategories.initiate(undefined));
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

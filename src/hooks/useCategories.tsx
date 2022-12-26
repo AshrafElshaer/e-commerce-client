@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { TCategory } from "../features/categories/categoriesSlice";
+import { TCategory } from "../features/categoriesSlice";
 import data from "../data/categories.json";
 
 const useCategories = () => {
   const [categories, setCategories] = useState<TCategory[]>(data);
-
 
   return { categories };
 };

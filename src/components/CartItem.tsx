@@ -3,7 +3,7 @@ import {
   incrementQuantity,
   TCartItemState,
   decrementQuantity,
-} from "../features/cart/cartSlice";
+} from "../features/cartSlice";
 import { formatPrice } from "../lib/formating";
 
 const CartItem = ({ item }: { item: TCartItemState }) => {

@@ -7,8 +7,7 @@ import {
 } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-import categoriesReducer from "../features/categories/categoriesSlice";
-import cartReducer from "../features/cart/cartSlice";
+import cartReducer from "../features/cartSlice";
 import { apiSlice } from "../features/api/apiSlice";
 import logger from "redux-logger";
 import persistStore from "redux-persist/es/persistStore";
@@ -23,7 +22,6 @@ const persistConfig = {
 
 const reducers = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
-  categories: categoriesReducer,
   cart: cartReducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -31,7 +29,9 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(middlewares),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(middlewares),
   devTools: process.env.NODE_ENV !== "production",
 });
 

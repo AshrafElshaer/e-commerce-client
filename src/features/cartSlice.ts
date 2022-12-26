@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../../app/store";
+import type { RootState } from "../app/store";
 
 // Define a type for the slice state
 export type TCartItemState = {
@@ -55,7 +55,6 @@ export const {
   decrementQuantity,
   removeCartItems,
 } = cartSlice.actions;
-
 
 export const selectCart = (state: RootState) => state.cart;
 export const selectCartCount = createSelector(

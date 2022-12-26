@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Button } from ".";
-import { TCategory } from "../features/categories/categoriesSlice";
+import { TCategory } from "../features/categoriesSlice";
 
 type TCategoryCardProps = {
   categoryName: string;
