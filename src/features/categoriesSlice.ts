@@ -34,7 +34,6 @@ export type TProduct = {
 };
 export type TMeta = { requestId: string; timestamp: number };
 
-
 export const categoriesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCategories: builder.query<TCategory[], undefined>({

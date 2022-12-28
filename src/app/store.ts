@@ -7,12 +7,14 @@ import {
 } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-import cartReducer from "../features/cartSlice";
 import { apiSlice } from "../features/api/apiSlice";
+import authReducer from "../features/authSlice";
+import cartReducer from "../features/cartSlice";
 import logger from "redux-logger";
 import persistStore from "redux-persist/es/persistStore";
+import { authApipiSlice } from "../features/api/authApiSlice";
 
-const middlewares = [apiSlice.middleware, logger];
+const middlewares = [apiSlice.middleware, authApipiSlice.middleware, logger];
 
 const persistConfig = {
   key: "root",
@@ -22,7 +24,9 @@ const persistConfig = {
 
 const reducers = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
+  [authApipiSlice.reducerPath]: authApipiSlice.reducer,
   cart: cartReducer,
+  auth: authReducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducers);
 
