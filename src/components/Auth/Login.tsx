@@ -34,7 +34,7 @@ const Login = () => {
       }).unwrap();
       dispatch(setCredentials({ ...userData }));
       resetForm();
-      navigate(-1);
+      navigate('/');
     } catch (err: any) {
       setErrMsg(err.data.message);
     }

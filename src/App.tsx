@@ -9,6 +9,7 @@ const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const ProductPage = lazy(() => import("./pages/ProductPage"));
 const Authentication = lazy(() => import("./pages/Authentication"));
 const User = lazy(() => import("./pages/User"));
+const ContactSupport = lazy(() => import("./pages/ContactSupport"));
 const NoMatch = lazy(() => import("./pages/NoMatch"));
 
 const App = () => {
@@ -26,8 +27,9 @@ const App = () => {
               </Route>
               <Route path='auth' element={<Authentication />} />
               <Route path='checkout' element={<Checkout />} />
-              <Route path='no-match' element={<NoMatch />} />
               <Route path='user' element={<User />} />
+              <Route path='support' element={<ContactSupport />} />
+              <Route path='no-match' element={<NoMatch />} />
               <Route path='*' element={<NoMatch />} />
             </Route>
           </Routes>

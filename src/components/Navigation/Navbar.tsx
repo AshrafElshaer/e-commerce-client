@@ -3,11 +3,13 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import { AiOutlineShoppingCart, AiTwotoneSetting } from "react-icons/ai";
 import { BiLogOut, BiSupport } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
-import { Cart, CategoryCard } from "../components";
-import useCategories from "../hooks/useCategories";
-import { useAppSelector } from "../app/hooks";
-import { selectCartCount } from "../features/cartSlice";
-import { selectCurrentUser } from "../features/authSlice";
+import { Cart, CategoryCard } from "..";
+import useCategories from "../../hooks/useCategories";
+import { useAppSelector } from "../../app/hooks";
+import { selectCartCount } from "../../features/cartSlice";
+import { selectCurrentUser } from "../../features/authSlice";
+import MobileNav from "./MobileNav";
+import DesktopNav from "./DesktopNav";
 
 const Navbar = () => {
   const { categories } = useCategories();
@@ -62,6 +64,7 @@ const Navbar = () => {
     <div>
       <nav className=' bg-black text-white py-4'>
         <div className='container relative flex gap-6 justify-between items-center  z-50 before:content-[""] before:w-full before:h-[1px] before:absolute before:-bottom-4 before:left-0  before:bg-[#979797]'>
+          {/* HAMBURGER BUTTON */}
           <button
             className='toggle cursor-pointer md:hidden'
             onClick={toggleNavbar}>
@@ -82,49 +85,23 @@ const Navbar = () => {
             audiophile
           </a>
           {/* MOBILE NAVBAR */}
-          <ul
-            className={`w-full bg-white absolute min-h-screen  text-center top-12 text-black md:hidden px-4 left-0
-            ${isMenuOpen ? "block sm:flex" : "hidden"}
-             sm:justify-center sm:gap-4 sm:flex-wrap`}>
-            {categories.map((category) => (
-              <li className='flex-1' key={category.category}>
-                <CategoryCard
-                  key={category.category}
-                  categoryName={category.category}
-                  image={category.categoryImage}
-                  toggleNavbar={toggleNavbar}
-                />
-              </li>
-            ))}
-          </ul>
+          {isMenuOpen ? (
+            <MobileNav
+              isMenuOpen={isMenuOpen}
+              categories={categories}
+              toggleNavbar={toggleNavbar}
+            />
+          ) : null}
 
           {/* DESKTOP NAVBAR */}
-          <ul className='hidden md:flex w-full justify-center gap-8 font-bold uppercase text-xs'>
-            <li>
-              <Link
-                to='/'
-                className='cursor-pointer hover:text-orange transition-all '>
-                home
-              </Link>
-            </li>
+          <DesktopNav categories={categories} pathName={pathname} />
 
-            {categories.map((category) => (
-              <li key={category.category}>
-                <Link
-                  to={`/${category.category}`}
-                  className={`cursor-pointer hover:text-orange transition-all ${
-                    pathname.includes(`/${category.category}`)
-                      ? "text-orange"
-                      : "not-working"
-                  }`}>
-                  {category.category}
-                </Link>
-              </li>
-            ))}
-          </ul>
           {/* USER MENU */}
           {user ? (
-            <button className='text-xl ml-auto' onClick={toggleUserMenu}>
+            <button
+              className='text-xl ml-auto'
+              onClick={toggleUserMenu}
+              aria-label='User Menu'>
               <FiUser />
             </button>
           ) : (
@@ -133,7 +110,7 @@ const Navbar = () => {
             </Link>
           )}
           {isUserMenuOpen ? (
-            <ul className='bg-white text-black text-base  absolute top-[2.75rem] right-0 w-60 rounded-b-lg flex flex-col gap-6 p-4'>
+            <ul className='bg-white text-black text-base  absolute top-[2.75rem] right-0 w-60 rounded-b-lg flex flex-col gap-6 p-4 shadow-lg'>
               <li>
                 <Link
                   to='/user'
@@ -142,9 +119,13 @@ const Navbar = () => {
                   Preferences
                 </Link>
               </li>
-              <li className='flex justify-start items-center gap-2 hover:text-orange'>
-                <BiSupport />
-                Contact Support
+              <li>
+                <Link
+                  to='/support'
+                  className='flex justify-start items-center gap-2 hover:text-orange'>
+                  <BiSupport />
+                  Contact Support
+                </Link>
               </li>
               <li className='flex justify-start items-center gap-2 hover:text-orange '>
                 {" "}
@@ -156,6 +137,7 @@ const Navbar = () => {
           {/* CART MENU */}
           <button
             data-cartcount={cartCount}
+            aria-label='Cart Menu'
             className={`text-xl cursor-pointer relative ${
               cartCount
                 ? "before:content-[attr(data-cartcount)] before:w-full before:h-full before:bg-orange before:absolute before:-top-3 before:-right-3 before:rounded-full before:text-xs before:grid before:content-center"

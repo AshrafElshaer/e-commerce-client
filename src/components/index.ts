@@ -1,4 +1,4 @@
-export { default as Navbar } from "./Navbar";
+export { default as Navbar } from "./Navigation/Navbar";
 export { default as Header } from "./Header";
 export { default as Button } from "./Button";
 export { default as Cart } from "./Cart";

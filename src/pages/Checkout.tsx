@@ -165,7 +165,9 @@ const Checkout = () => {
           <h3 className='uppercase'>summary</h3>
           {/* //////////////////////// */}
           {cartItems.map((item, idx) => (
-            <div className='flex justify-start items-center gap-6 my-6'>
+            <div
+              className='flex justify-start items-center gap-6 my-6'
+              key={idx}>
               <img
                 src={item.image}
                 alt={item.name}
