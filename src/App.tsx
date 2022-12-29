@@ -4,13 +4,14 @@ import { Footer, Navbar } from "./components";
 import "./index.css";
 import Checkout from "./pages/Checkout";
 
-function App() {
-  const Home = lazy(() => import("./pages/Home"));
-  const CategoryPage = lazy(() => import("./pages/CategoryPage"));
-  const ProductPage = lazy(() => import("./pages/ProductPage"));
-  const Authentication = lazy(() => import("./pages/Authentication"));
-  const NoMatch = lazy(() => import("./pages/NoMatch"));
+const Home = lazy(() => import("./pages/Home"));
+const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const ProductPage = lazy(() => import("./pages/ProductPage"));
+const Authentication = lazy(() => import("./pages/Authentication"));
+const User = lazy(() => import("./pages/User"));
+const NoMatch = lazy(() => import("./pages/NoMatch"));
 
+const App = () => {
   return (
     <Suspense>
       <div role='body' className='w-full font-manrope'>
@@ -25,7 +26,8 @@ function App() {
               </Route>
               <Route path='auth' element={<Authentication />} />
               <Route path='checkout' element={<Checkout />} />
-              <Route path='/no-match' element={<NoMatch />} />
+              <Route path='no-match' element={<NoMatch />} />
+              <Route path='user' element={<User />} />
               <Route path='*' element={<NoMatch />} />
             </Route>
           </Routes>
@@ -34,6 +36,6 @@ function App() {
       </div>
     </Suspense>
   );
-}
+};
 
 export default App;

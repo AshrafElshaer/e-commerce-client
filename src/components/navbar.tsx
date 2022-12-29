@@ -1,25 +1,37 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiTwotoneSetting } from "react-icons/ai";
+import { BiLogOut, BiSupport } from "react-icons/bi";
+import { FiUser } from "react-icons/fi";
 import { Cart, CategoryCard } from "../components";
 import useCategories from "../hooks/useCategories";
 import { useAppSelector } from "../app/hooks";
 import { selectCartCount } from "../features/cartSlice";
+import { selectCurrentUser } from "../features/authSlice";
 
 const Navbar = () => {
   const { categories } = useCategories();
   const { pathname } = useLocation();
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const cartCount = useAppSelector(selectCartCount);
+  const user = useAppSelector(selectCurrentUser);
 
   const toggleNavbar = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((perv) => !perv);
     setIsCartOpen(false);
+    setIsUserMenuOpen(false);
   };
   const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
+    setIsCartOpen((perv) => !perv);
     setIsMenuOpen(false);
+    setIsUserMenuOpen(false);
+  };
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen((perv) => !perv);
+    setIsMenuOpen(false);
+    setIsCartOpen(false);
   };
   function disableScroll() {
     // To get the scroll position of current webpage
@@ -36,10 +48,15 @@ const Navbar = () => {
   function enableScroll() {
     window.onscroll = function () {};
   }
+  useEffect(() => {
+    setIsCartOpen(false);
+    setIsMenuOpen(false);
+    setIsUserMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
-    isCartOpen ? disableScroll() : enableScroll();
-  }, [isCartOpen]);
+    isCartOpen || isUserMenuOpen ? disableScroll() : enableScroll();
+  }, [isCartOpen, isUserMenuOpen]);
 
   return (
     <div>
@@ -82,9 +99,7 @@ const Navbar = () => {
           </ul>
 
           {/* DESKTOP NAVBAR */}
-          <ul
-            role='main-navbar'
-            className='hidden md:flex w-full justify-center gap-8 font-bold uppercase text-xs'>
+          <ul className='hidden md:flex w-full justify-center gap-8 font-bold uppercase text-xs'>
             <li>
               <Link
                 to='/'
@@ -107,9 +122,38 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <Link to='auth' className='font-bold uppercase text-xs ml-auto'>
-            Login
-          </Link>
+          {/* USER MENU */}
+          {user ? (
+            <button className='text-xl ml-auto' onClick={toggleUserMenu}>
+              <FiUser />
+            </button>
+          ) : (
+            <Link to='auth' className='font-bold uppercase text-xs ml-auto'>
+              Login
+            </Link>
+          )}
+          {isUserMenuOpen ? (
+            <ul className='bg-white text-black text-base  absolute top-[2.75rem] right-0 w-60 rounded-b-lg flex flex-col gap-6 p-4'>
+              <li>
+                <Link
+                  to='/user'
+                  className='flex justify-start items-center gap-2 hover:text-orange'>
+                  <AiTwotoneSetting />
+                  Preferences
+                </Link>
+              </li>
+              <li className='flex justify-start items-center gap-2 hover:text-orange'>
+                <BiSupport />
+                Contact Support
+              </li>
+              <li className='flex justify-start items-center gap-2 hover:text-orange '>
+                {" "}
+                <BiLogOut />
+                Log Out
+              </li>
+            </ul>
+          ) : null}
+          {/* CART MENU */}
           <button
             data-cartcount={cartCount}
             className={`text-xl cursor-pointer relative ${
