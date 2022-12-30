@@ -15,12 +15,12 @@ export type TUderState = {
 
 const initialState: TUderState = {
   userInfo: {
-    _id: "assd",
-    email: "ashraf@elshaer.com",
-    orders: [],
+    _id: "123",
+    email: "null",
+    orders: ["1,2,3"],
     role: "user",
   },
-  token: "klsandklasjklasdmc8xc79zxucs",
+  token: "null",
 };
 
 const authSlice = createSlice({
