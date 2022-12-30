@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Footer, Navbar } from "./components";
 import "./index.css";
 import Checkout from "./pages/Checkout";
+import { Hello } from "./pages/User";
 
 const Home = lazy(() => import("./pages/Home"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -27,7 +28,12 @@ const App = () => {
               </Route>
               <Route path='auth' element={<Authentication />} />
               <Route path='checkout' element={<Checkout />} />
-              <Route path='user' element={<User />} />
+              <Route path='user' element={<User />}>
+                <Route index element={<Hello />} />
+                <Route path='address' element={<Hello />} />
+                <Route path='orders' element={<Hello />} />
+                <Route path='payment' element={<Hello />} />
+              </Route>
               <Route path='support' element={<ContactSupport />} />
               <Route path='no-match' element={<NoMatch />} />
               <Route path='*' element={<NoMatch />} />

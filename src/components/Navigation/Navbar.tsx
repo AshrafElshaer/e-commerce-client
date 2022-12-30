@@ -110,29 +110,31 @@ const Navbar = () => {
             </Link>
           )}
           {isUserMenuOpen ? (
-            <ul className='bg-white text-black text-base  absolute top-[2.75rem] right-0 w-60 rounded-b-lg flex flex-col gap-6 p-4 shadow-lg'>
-              <li>
-                <Link
-                  to='/user'
-                  className='flex justify-start items-center gap-2 hover:text-orange'>
-                  <AiTwotoneSetting />
-                  Preferences
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/support'
-                  className='flex justify-start items-center gap-2 hover:text-orange'>
-                  <BiSupport />
-                  Contact Support
-                </Link>
-              </li>
-              <li className='flex justify-start items-center gap-2 hover:text-orange '>
-                {" "}
-                <BiLogOut />
-                Log Out
-              </li>
-            </ul>
+            <>
+              <ul className='bg-white text-black text-base  absolute top-[2.75rem] right-0 w-60 rounded-b-lg flex flex-col gap-6 p-4 shadow-lg'>
+                <li>
+                  <Link
+                    to='/user'
+                    className='flex justify-start items-center gap-2 hover:text-orange'>
+                    <AiTwotoneSetting />
+                    Preferences
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/support'
+                    className='flex justify-start items-center gap-2 hover:text-orange'>
+                    <BiSupport />
+                    Contact Support
+                  </Link>
+                </li>
+                <li className='flex justify-start items-center gap-2 hover:text-orange '>
+                  {" "}
+                  <BiLogOut />
+                  Log Out
+                </li>
+              </ul>
+            </>
           ) : null}
           {/* CART MENU */}
           <button
@@ -148,6 +150,11 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+      {isUserMenuOpen ? (
+        <div
+          className='absolute bg-zinc-900/40 w-full h-screen'
+          onClick={toggleUserMenu}></div>
+      ) : null}
       {isCartOpen ? <Cart toggleCart={toggleCart} /> : null}
       <Outlet />
     </div>
