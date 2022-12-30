@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { Button, CartItem } from "../components";
+import { Button, CartItem } from ".";
 import {
   removeCartItems,
   selectCart,

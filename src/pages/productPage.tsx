@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
-import { Button, AboutUs } from "../components";
+import { Button, AboutUs } from "../Components";
 import { addToCart } from "../features/cartSlice";
 import { TProduct } from "../features/categoriesSlice";
 import useCategories from "../hooks/useCategories";

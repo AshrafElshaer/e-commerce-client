@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
-import { Button, AboutUs } from "../components";
+import { Button, AboutUs } from "../Components";
 import useCategories from "../hooks/useCategories";
 import NoMatch from "./NoMatch";
 

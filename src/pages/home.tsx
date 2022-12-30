@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Header, AboutUs, HomePreview } from "../components";
+import { Header, AboutUs, HomePreview } from "../Components";
 import { useGetCategoriesQuery } from "../features/categoriesSlice";
 import useCategories from "../hooks/useCategories";
 const Home = () => {

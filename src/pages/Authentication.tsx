@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Login, SignUp } from "../components";
+import { Button, Login, SignUp } from "../Components";
 import { AiOutlineGoogle, AiFillApple } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent } from "react";
 import { Field, ErrorMessage, FormikErrors, FormikTouched } from "formik";
-import { TCheckoutOptions } from "../../pages/Checkout";
+import { TCheckoutOptions } from "../../Pages/Checkout";
 
 export type TFormikErrorsAndTouched<T> = {
   [key: string]: T;
@@ -37,7 +37,9 @@ const Input = (props: TInputProps) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    errors && touched && errors[name] && touched[name] ? setIsError(true) : setIsError(false);
+    errors && touched && errors[name] && touched[name]
+      ? setIsError(true)
+      : setIsError(false);
     // console.log(rest)
   }, [errors, touched]);
 

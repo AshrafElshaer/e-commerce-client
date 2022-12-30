@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import useCategories from "../hooks/useCategories";
-import { CategoryCard } from "../components";
+import { CategoryCard } from ".";
 import { TCategory } from "../features/categoriesSlice";
 
 const CategoryNavigation = () => {

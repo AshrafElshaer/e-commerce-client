@@ -1,4 +1,4 @@
-import { CategoryNavigation } from "../components";
+import { CategoryNavigation } from ".";
 
 const AboutUs = () => {
   return (

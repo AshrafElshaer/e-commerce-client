@@ -1,17 +1,21 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Footer, Navbar } from "./components";
+import { Footer, Navbar } from "./Components";
 import "./index.css";
-import Checkout from "./pages/Checkout";
-import { Hello } from "./pages/User";
+import Checkout from "./Pages/Checkout";
+import ProtectedRoutes from "./Pages/ProtectedRoutes";
+import Account from "./Pages/User/Account";
+import Address from "./Pages/User/Address";
+import OrdersList from "./Pages/User/OrdersList";
+import PaymentMethods from "./Pages/User/PaymentMethods";
 
-const Home = lazy(() => import("./pages/Home"));
-const CategoryPage = lazy(() => import("./pages/CategoryPage"));
-const ProductPage = lazy(() => import("./pages/ProductPage"));
-const Authentication = lazy(() => import("./pages/Authentication"));
-const User = lazy(() => import("./pages/User"));
-const ContactSupport = lazy(() => import("./pages/ContactSupport"));
-const NoMatch = lazy(() => import("./pages/NoMatch"));
+const Home = lazy(() => import("./Pages/Home"));
+const CategoryPage = lazy(() => import("./Pages/CategoryPage"));
+const ProductPage = lazy(() => import("./Pages/ProductPage"));
+const Authentication = lazy(() => import("./Pages/Authentication"));
+const User = lazy(() => import("./Pages/User/User"));
+const ContactSupport = lazy(() => import("./Pages/ContactSupport"));
+const NoMatch = lazy(() => import("./Pages/NoMatch"));
 
 const App = () => {
   return (
@@ -28,11 +32,13 @@ const App = () => {
               </Route>
               <Route path='auth' element={<Authentication />} />
               <Route path='checkout' element={<Checkout />} />
-              <Route path='user' element={<User />}>
-                <Route index element={<Hello />} />
-                <Route path='address' element={<Hello />} />
-                <Route path='orders' element={<Hello />} />
-                <Route path='payment' element={<Hello />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path='user' element={<User />}>
+                  <Route index element={<Account />} />
+                  <Route path='address' element={<Address />} />
+                  <Route path='orders' element={<OrdersList />} />
+                  <Route path='payment' element={<PaymentMethods />} />
+                </Route>
               </Route>
               <Route path='support' element={<ContactSupport />} />
               <Route path='no-match' element={<NoMatch />} />

@@ -6,7 +6,7 @@ import {
   FormikTouched,
   FieldProps,
 } from "formik";
-import { TCheckoutOptions } from "../../pages/Checkout";
+import { TCheckoutOptions } from "../../Pages/Checkout";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export type TFormikErrorsAndTouched<T> = {

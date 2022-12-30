@@ -6,7 +6,7 @@ import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 import { apiSlice } from "./features/api/apiSlice";
 import { store, persistor } from "./app/store";
 import { BrowserRouter } from "react-router-dom";
-import { ScrollToTop } from "./components";
+import { ScrollToTop } from "./Components";
 import { PersistGate } from "redux-persist/integration/react";
 import { categoriesApiSlice } from "./features/categoriesSlice";
 

@@ -1,4 +1,4 @@
-import { Button } from "../components";
+import { Button } from ".";
 const Header = () => {
   return (
     <div className='w-full bg-[#121212] lg:bg-hero-desktop lg:bg-center mb-6'>

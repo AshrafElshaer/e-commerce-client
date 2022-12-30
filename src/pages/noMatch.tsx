@@ -1,5 +1,5 @@
 import React from "react";
-import { AboutUs, Button } from "../components";
+import { AboutUs, Button } from "../Components";
 import errorImgUrl from "../assets/Error-404.png";
 import { Link } from "react-router-dom";
 

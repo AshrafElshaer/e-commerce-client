@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, FormikHelpers } from "formik";
-import { Button, FormikControl } from "../components";
+import { Button, FormikControl } from "../Components";
 import { checkOutValidation } from "../lib/formValidations";
 import { ConnectedFocusError } from "focus-formik-error";
 import { useAppSelector } from "../app/hooks";
