@@ -3,7 +3,7 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import { AiOutlineShoppingCart, AiTwotoneSetting } from "react-icons/ai";
 import { BiLogOut, BiSupport } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
-import { Cart, CategoryCard } from "..";
+import { Cart} from "..";
 import useCategories from "../../hooks/useCategories";
 import { useAppSelector } from "../../app/hooks";
 import { selectCartCount } from "../../features/cartSlice";

@@ -28,3 +28,25 @@ export const signupValidation = yup.object({
     .oneOf([yup.ref("password"), null], "Passwords must match")
     .required("Required"),
 });
+
+export const accountValidation = yup.object({
+  name: yup.string().required("Required"),
+  email: yup.string().email("Invalid Email Format").required("Required"),
+  phoneNumber: yup
+    .number()
+    .required("Required")
+    .test("len", "Must be 10 digits", (val) =>
+      val ? val.toString().length === 10 : false
+    ),
+  password: yup.string().required("Required").min(6),
+  newPassword: yup.string().min(6),
+  confirmPassword: yup
+    .string()
+    .when("newPassword", (newPassword, field) =>
+      newPassword
+        ? field
+            .required("Required")
+            .oneOf([yup.ref("newPassword"), null], "Passwords must match")
+        : field
+    ),
+});
