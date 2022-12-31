@@ -1,7 +1,6 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { RiAccountBoxFill } from "react-icons/ri";
 import { FaAddressBook, FaBoxOpen } from "react-icons/fa";
-import { MdPayments } from "react-icons/md";
 const User = () => {
   const { pathname } = useLocation();
   return (
@@ -36,17 +35,6 @@ const User = () => {
             <Link to='orders' className='flex justify-start items-center gap-4'>
               <FaBoxOpen />
               Orders
-            </Link>
-          </li>
-          <li
-            className={`px-8 py-2  ${
-              pathname === "/user/payment" ? "bg-gray" : ""
-            }`}>
-            <Link
-              to='payment'
-              className='flex justify-start items-center gap-4'>
-              <MdPayments />
-              Payment Methods
             </Link>
           </li>
         </ul>

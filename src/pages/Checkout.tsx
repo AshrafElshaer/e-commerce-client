@@ -11,7 +11,7 @@ export type TCheckoutFormState = {
   name: string;
   email: string;
   phoneNumber: number | string;
-  address: string;
+  street: string;
   zipcode: number | string;
   city: string;
   country: string;
@@ -26,7 +26,7 @@ const initialValues: TCheckoutFormState = {
   name: "",
   email: "",
   phoneNumber: "",
-  address: "",
+  street: "",
   zipcode: "",
   city: "",
   country: "",
@@ -49,7 +49,9 @@ const Checkout = () => {
   const onSubmit = (
     values: TCheckoutFormState,
     { resetForm }: FormikHelpers<TCheckoutFormState>
-  ): void | Promise<any> => {};
+  ): void | Promise<any> => {
+    console.log(values);
+  };
   return (
     <div className='bg-gray'>
       <button
@@ -106,7 +108,7 @@ const Checkout = () => {
                     <div className='md:flex flex-wrap flex-grow-0 gap-4'>
                       <FormikControl
                         control='text'
-                        name='address'
+                        name='street'
                         label='Address'
                         placeholder='1137 Williams Avenue'
                         errors={Formik.errors}

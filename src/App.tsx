@@ -37,7 +37,6 @@ const App = () => {
                   <Route index element={<Account />} />
                   <Route path='address' element={<Address />} />
                   <Route path='orders' element={<OrdersList />} />
-                  <Route path='payment' element={<PaymentMethods />} />
                 </Route>
               </Route>
               <Route path='support' element={<ContactSupport />} />

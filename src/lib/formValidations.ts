@@ -9,7 +9,7 @@ export const checkOutValidation = yup.object({
     .test("len", "Must be 10 digits", (val) =>
       val ? val.toString().length === 10 : false
     ),
-  address: yup.string().required("Required"),
+  street: yup.string().required("Required"),
   zipcode: yup.number().required("Requires"),
   city: yup.string().required("Required"),
   country: yup.string().required("Required"),
@@ -49,4 +49,11 @@ export const accountValidation = yup.object({
             .oneOf([yup.ref("newPassword"), null], "Passwords must match")
         : field
     ),
+});
+
+export const addressValidation = yup.object({
+  street: yup.string().required("Required"),
+  zipcode: yup.number().required("Requires"),
+  city: yup.string().required("Required"),
+  country: yup.string().required("Required"),
 });

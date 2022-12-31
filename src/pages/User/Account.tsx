@@ -27,7 +27,7 @@ const Account = () => {
     values: TAccountState,
     { resetForm }: FormikHelpers<TAccountState>
   ): Promise<any> => {
-    // console.log(values);
+    console.log(values);
   };
   return (
     <Formik
@@ -41,6 +41,7 @@ const Account = () => {
               control='text'
               name='name'
               label='Name'
+              placeholder='Alexei Ward'
               errors={Formik.errors}
               touched={Formik.touched}
             />
@@ -48,6 +49,7 @@ const Account = () => {
               control='email'
               name='email'
               label='Email'
+              placeholder='alexeiward@mail.com'
               errors={Formik.errors}
               touched={Formik.touched}
             />
@@ -57,6 +59,7 @@ const Account = () => {
               control='number'
               name='phoneNumber'
               label='Phone Number'
+              placeholder='2025550136'
               errors={Formik.errors}
               touched={Formik.touched}
             />
@@ -64,6 +67,7 @@ const Account = () => {
               control='password'
               name='password'
               label='Password'
+              placeholder='Must be at least 6 characters'
               errors={Formik.errors}
               touched={Formik.touched}
             />
@@ -76,6 +80,7 @@ const Account = () => {
               control='password'
               name='newPassword'
               label='New Password'
+              placeholder='Must be at least 6 characters'
               errors={Formik.errors}
               touched={Formik.touched}
             />
@@ -83,6 +88,7 @@ const Account = () => {
               control='password'
               name='confirmPassword'
               label='Confirm Password'
+              placeholder='Must match new password'
               errors={Formik.errors}
               touched={Formik.touched}
             />
