@@ -67,10 +67,10 @@ export const authExtendedApi = authApiSlice.injectEndpoints({
       }),
     }),
     updateUser: builder.mutation({
-      query: (userInfo) => ({
-        url: `/users/${userInfo.userId}`,
+      query: ({ userId, ...rest }) => ({
+        url: `/users/${userId}`,
         method: "PUT",
-        body: userInfo,
+        body: { ...rest },
         responseHandler: (response) => response.json(),
       }),
     }),

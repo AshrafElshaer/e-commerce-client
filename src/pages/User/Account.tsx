@@ -38,7 +38,7 @@ const Account = () => {
     try {
       const result = await updateUser({ userId, ...values });
       console.log(result)
-      // dispatch(setCredentials({ userInfo: result.userInfo }));
+      dispatch(setCredentials({ userInfo: result.data.userInfo }));
     } catch (error) {
       console.log(error);
     }

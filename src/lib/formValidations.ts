@@ -56,4 +56,5 @@ export const addressValidation = yup.object({
   zipcode: yup.number().required("Requires"),
   city: yup.string().required("Required"),
   country: yup.string().required("Required"),
+  password: yup.string().required("Required").min(6),
 });

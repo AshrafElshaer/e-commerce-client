@@ -1,8 +1,10 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Button, FormikControl } from "../../Components";
 import {
   selectCurrentUser,
+  setCredentials,
+  useUpdateUserMutation,
 } from "../../features/authSlice";
 import { addressValidation } from "../../lib/formValidations";
 
@@ -11,28 +13,37 @@ type TAddressState = {
   zipcode: string | number;
   city: string;
   country: string;
+  password: string;
 };
 
 const Address = () => {
   const user = useAppSelector(selectCurrentUser);
-  // const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const dispatch = useAppDispatch();
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
   const initialValues: TAddressState = {
-    street: "",
-    zipcode: "",
-    city: "",
-    country: "",
+    street: user?.address?.street || "",
+    zipcode: user?.address?.zipcode || "",
+    city: user?.address?.city || "",
+    country: user?.address?.country || "",
+    password: "",
   };
   const onSubmit = async (
     values: TAddressState,
     { resetForm }: FormikHelpers<TAddressState>
   ): Promise<any> => {
+    const { street, zipcode, city, country, password } = values;
     try {
-      // const result = await updateUser(values);
-      // console.log(result);
+      const result = await updateUser({
+        userId: user?._id,
+        address: { street, zipcode, city, country },
+        password,
+      });
+      console.log(result);
+
+      dispatch(setCredentials({ userInfo: result.data.userInfo }));
     } catch (error) {
       console.log(error);
     }
-    console.log(values);
   };
   return (
     <Formik
@@ -73,6 +84,14 @@ const Address = () => {
               name='country'
               label='Country'
               placeholder='United States'
+              errors={Formik.errors}
+              touched={Formik.touched}
+            />
+            <FormikControl
+              control='password'
+              name='password'
+              label='Password'
+              placeholder='**********'
               errors={Formik.errors}
               touched={Formik.touched}
             />
