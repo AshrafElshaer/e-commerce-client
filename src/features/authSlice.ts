@@ -1,33 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
-import { authApipiSlice } from "./api/authApiSlice";
+import { authApiSlice } from "./api/authApiSlice";
+import { apiSlice } from "./api/apiSlice";
 
-export type TUderState = {
+export type TUserState = {
   userInfo?: {
     _id: string;
+    name?: string;
     email: string;
     orders: string[];
+    phone?: string;
+    address?: {
+      street: string;
+      zipcode: number;
+      city: string;
+      country: string;
+    };
     role: string;
   } | null;
   token?: string | null;
 };
 
-const initialState: TUderState = {
-  userInfo: {
-    _id: "123",
-    email: "null",
-    orders: ["1,2,3"],
-    role: "user",
-  },
-  token: "null",
+const initialState: TUserState = {
+  userInfo: null,
+  token: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setCredentials: (state, action: PayloadAction<TUderState>) => {
+    setCredentials: (state, action: PayloadAction<TUserState>) => {
       const { userInfo, token } = action.payload;
       if (userInfo) state.userInfo = userInfo;
       if (token) state.token = token;
@@ -39,36 +43,46 @@ const authSlice = createSlice({
   },
 });
 
-export const authExtendedApi = authApipiSlice.injectEndpoints({
+export const authExtendedApi = authApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     loginUser: builder.mutation({
       query: (credentials) => ({
-        url: "/login",
+        url: "/auth/login",
         method: "POST",
         body: credentials,
       }),
     }),
     registerUser: builder.mutation({
       query: (credentials) => ({
-        url: "/register",
+        url: "/auth/register",
         method: "POST",
         body: credentials,
       }),
     }),
     logoutUser: builder.mutation({
       query: (credentials) => ({
-        url: "/logout",
+        url: "/auth/logout",
         method: "POST",
         body: credentials,
       }),
     }),
+    updateUser: builder.mutation({
+      query: (userInfo) => ({
+        url: `/users/${userInfo.userId}`,
+        method: "PUT",
+        body: userInfo,
+        responseHandler: (response) => response.json(),
+      }),
+    }),
   }),
 });
+
 export const { setCredentials, logout } = authSlice.actions;
 export const {
   useLoginUserMutation,
   useRegisterUserMutation,
   useLogoutUserMutation,
+  useUpdateUserMutation,
 } = authExtendedApi;
 export const selectCurrentUser = (state: RootState) => state.auth.userInfo;
 export const selectUserToken = (state: RootState) => state.auth.token;

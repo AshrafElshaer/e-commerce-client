@@ -7,7 +7,6 @@ import ProtectedRoutes from "./Pages/ProtectedRoutes";
 import Account from "./Pages/User/Account";
 import Address from "./Pages/User/Address";
 import OrdersList from "./Pages/User/OrdersList";
-import PaymentMethods from "./Pages/User/PaymentMethods";
 
 const Home = lazy(() => import("./Pages/Home"));
 const CategoryPage = lazy(() => import("./Pages/CategoryPage"));

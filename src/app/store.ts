@@ -12,9 +12,9 @@ import authReducer from "../features/authSlice";
 import cartReducer from "../features/cartSlice";
 import logger from "redux-logger";
 import persistStore from "redux-persist/es/persistStore";
-import { authApipiSlice } from "../features/api/authApiSlice";
+import { authApiSlice } from "../features/api/authApiSlice";
 
-const middlewares = [apiSlice.middleware, authApipiSlice.middleware, logger];
+const middlewares = [apiSlice.middleware, authApiSlice.middleware, logger];
 
 const persistConfig = {
   key: "root",
@@ -24,7 +24,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
-  [authApipiSlice.reducerPath]: authApipiSlice.reducer,
+  [authApiSlice.reducerPath]: authApiSlice.reducer,
   cart: cartReducer,
   auth: authReducer,
 });

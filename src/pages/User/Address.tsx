@@ -1,5 +1,9 @@
 import { Formik, Form, FormikHelpers } from "formik";
+import { useAppSelector } from "../../app/hooks";
 import { Button, FormikControl } from "../../Components";
+import {
+  selectCurrentUser,
+} from "../../features/authSlice";
 import { addressValidation } from "../../lib/formValidations";
 
 type TAddressState = {
@@ -10,6 +14,8 @@ type TAddressState = {
 };
 
 const Address = () => {
+  const user = useAppSelector(selectCurrentUser);
+  // const [updateUser, { isLoading }] = useUpdateUserMutation();
   const initialValues: TAddressState = {
     street: "",
     zipcode: "",
@@ -20,6 +26,12 @@ const Address = () => {
     values: TAddressState,
     { resetForm }: FormikHelpers<TAddressState>
   ): Promise<any> => {
+    try {
+      // const result = await updateUser(values);
+      // console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
     console.log(values);
   };
   return (

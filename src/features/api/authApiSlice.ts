@@ -10,7 +10,7 @@ import { RootState } from "../../app/store";
 const serverUrl = import.meta.env.VITE_SERVER_URL;
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `${serverUrl}/auth`,
+  baseUrl: serverUrl,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -43,7 +43,7 @@ const baseQueryWithReauth: BaseQueryFn<
   return result;
 };
 
-export const authApipiSlice = createApi({
+export const authApiSlice = createApi({
   reducerPath: "authApi",
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({}),

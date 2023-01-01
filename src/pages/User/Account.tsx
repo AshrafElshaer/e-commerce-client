@@ -1,8 +1,12 @@
-import React from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { accountValidation } from "../../lib/formValidations";
 import { Button, FormikControl } from "../../Components";
-import { string } from "yup/lib/locale";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  selectCurrentUser,
+  setCredentials,
+  useUpdateUserMutation,
+} from "../../features/authSlice";
 
 type TAccountState = {
   name: string;
@@ -14,10 +18,14 @@ type TAccountState = {
 };
 
 const Account = () => {
+  const user = useAppSelector(selectCurrentUser);
+  const userId = user?._id;
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const dispatch = useAppDispatch();
   const initialValues = {
-    name: "ashraf",
-    email: "",
-    phoneNumber: "",
+    name: user?.name ? user.name : "",
+    email: user?.email ? user.email : "",
+    phoneNumber: user?.phone ? user.phone : "",
     password: "",
     newPassword: "",
     confirmPassword: "",
@@ -27,7 +35,13 @@ const Account = () => {
     values: TAccountState,
     { resetForm }: FormikHelpers<TAccountState>
   ): Promise<any> => {
-    console.log(values);
+    try {
+      const result = await updateUser({ userId, ...values });
+      console.log(result)
+      // dispatch(setCredentials({ userInfo: result.userInfo }));
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Formik

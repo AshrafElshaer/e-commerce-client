@@ -34,13 +34,15 @@ const Login = () => {
       }).unwrap();
       dispatch(setCredentials({ ...userData }));
       resetForm();
-      navigate('/');
+      navigate("/");
     } catch (err: any) {
       setErrMsg(err.data.message);
     }
   };
   return (
     <>
+      <p className='text-red-500 text-base text-center'>{errMsg}</p>
+
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
