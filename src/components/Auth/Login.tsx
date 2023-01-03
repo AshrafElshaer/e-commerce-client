@@ -25,7 +25,7 @@ const Login = () => {
     values: TLoginFormState,
     { resetForm }: FormikHelpers<TLoginFormState>
   ): Promise<any> => {
-    setErrMsg("");
+    if (errMsg) setErrMsg("");
 
     try {
       const userData = await loginUser({
@@ -68,6 +68,7 @@ const Login = () => {
             <p className='block text-right text-blue-600 cursor-pointer'>
               Forgot Password ?
             </p>
+
             <Button
               type='submit'
               className='w-full rounded-full mt-6 mb-2'

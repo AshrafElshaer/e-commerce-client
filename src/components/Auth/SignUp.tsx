@@ -28,7 +28,7 @@ const SignUp = () => {
     values: TSignUpState,
     { resetForm }: FormikHelpers<TSignUpState>
   ): Promise<any> => {
-    setErrMsg("");
+    if(errMsg) setErrMsg('')
 
     try {
       const userData = await registerUser({

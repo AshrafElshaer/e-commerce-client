@@ -24,7 +24,7 @@ export type TUserState = {
 
 const initialState: TUserState = {
   userInfo: null,
-  token: null,
+  token: "null",
 };
 
 const authSlice = createSlice({
@@ -70,8 +70,7 @@ export const authExtendedApi = authApiSlice.injectEndpoints({
       query: ({ userId, ...rest }) => ({
         url: `/users/${userId}`,
         method: "PUT",
-        body: { ...rest },
-        responseHandler: (response) => response.json(),
+        body: rest,
       }),
     }),
   }),
