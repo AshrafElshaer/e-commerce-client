@@ -6,6 +6,7 @@ import { ConnectedFocusError } from "focus-formik-error";
 import { useAppSelector } from "../app/hooks";
 import { selectCart, selectCartTotal } from "../features/cartSlice";
 import { formatPrice } from "../lib/formating";
+import { selectCurrentUser } from "../features/authSlice";
 
 export type TCheckoutFormState = {
   name: string;
@@ -22,16 +23,6 @@ export type TCheckoutOptions = {
   value: string;
 }[];
 
-const initialValues: TCheckoutFormState = {
-  name: "",
-  email: "",
-  phoneNumber: "",
-  street: "",
-  zipcode: "",
-  city: "",
-  country: "",
-  paymentMethod: "creditCard",
-};
 
 const checkoutOptions = [
   { key: "Credit Card", value: "creditCard" },
@@ -39,12 +30,24 @@ const checkoutOptions = [
 ];
 
 const Checkout = () => {
+  const user = useAppSelector(selectCurrentUser);
   const navigate = useNavigate();
   const cartSelector = useAppSelector(selectCartTotal);
   const cartItems = useAppSelector(selectCart);
   const cartTotal = formatPrice(cartSelector);
   const VAT = formatPrice(cartSelector * 0.0825);
   const grandTotal = formatPrice(cartSelector + cartSelector * 0.0825 + 50);
+
+  const initialValues: TCheckoutFormState = {
+    name: user?.name || "",
+    email: user?.email || "",
+    phoneNumber: user?.phone || "",
+    street: user?.address?.street || "",
+    zipcode: user?.address?.zipcode || "",
+    city: user?.address?.city || "",
+    country: user?.address?.country || "",
+    paymentMethod: "creditCard",
+  };
 
   const onSubmit = (
     values: TCheckoutFormState,
