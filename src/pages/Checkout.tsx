@@ -80,9 +80,9 @@ const Checkout = () => {
     if (isAddreddSaved) {
       try {
         const result = await createNewOrder(newOrder).unwrap();
-        console.log(result);
+        // console.log(result);
       } catch (err: any) {
-        console.log(err);
+        console.log(err.message);
       }
     }
   };

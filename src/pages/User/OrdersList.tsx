@@ -8,9 +8,7 @@ const OrdersList = () => {
   const user = useAppSelector(selectCurrentUser);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    user ? null : navigate("/auth");
-  }, []);
+  
   const { data: orders } = useGetOrdersQuery(user._id);
   return (
     <div>

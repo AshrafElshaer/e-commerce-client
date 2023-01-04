@@ -31,11 +31,10 @@ export const ordersApiSlice = apiWithTags.injectEndpoints({
         responseHandler: (response) => response.json(),
         transformResponse: (returnValue: TOrder[], meta: TMeta) => {
           if (!meta) return [];
-          return returnValue.filter(
-            (order) => order.customer.id !== userId
-          );
+          return returnValue.filter((order) => order.customer.id !== userId);
         },
       }),
+      providesTags: ["Orders"],
     }),
     createNewOrder: builder.mutation<TOrder, TOrder>({
       query: (newOrder) => ({

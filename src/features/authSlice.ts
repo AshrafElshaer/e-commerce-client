@@ -23,23 +23,8 @@ export type TUserState = {
 };
 
 const initialState: TUserState = {
-  token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaHJhZkBlbHNoYWVyLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjcyNzg5MzQ4LCJleHAiOjE2NzI3OTAyNDh9.I-Cn2Zm_4HzPRyXSAJISmDwvFeVYFCqUvsy_Fzi1or0",
-  userInfo: {
-    _id: "63b088ae8775b0f4671c030b",
-    // address: {
-    //   street: "2580 collin mckinney pkwy",
-    //   city: "mckinney",
-    //   zipcode: "75070",
-    //   country: "usa",
-    // },
-    email: "ashraf@elshaer.com",
-    name: "ashraf moustafa elshaer",
-    orders: [],
-    phone: "2144408050",
-
-    role: "User",
-  },
+  token: null,
+  userInfo: null,
 };
 
 const authSlice = createSlice({
@@ -78,7 +63,6 @@ export const authExtendedApi = authApiSlice.injectEndpoints({
       query: () => ({
         url: "/auth/logout",
         method: "POST",
-
       }),
     }),
     updateUser: builder.mutation({
