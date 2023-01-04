@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials, logout } from "../authSlice";
+import { setCredentials, logoutAuth } from "../authSlice";
 import type {
   BaseQueryFn,
   FetchArgs,
@@ -37,7 +37,7 @@ const baseQueryWithReauth: BaseQueryFn<
       // retry the initial query
       result = await baseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(logout());
+      api.dispatch(logoutAuth());
     }
   }
   return result;

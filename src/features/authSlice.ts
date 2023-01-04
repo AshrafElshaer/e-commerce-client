@@ -51,7 +51,7 @@ const authSlice = createSlice({
       if (userInfo) state.userInfo = userInfo;
       if (token) state.token = token;
     },
-    logout: (state) => {
+    logoutAuth: (state) => {
       state.userInfo = null;
       state.token = null;
     },
@@ -75,10 +75,10 @@ export const authExtendedApi = authApiSlice.injectEndpoints({
       }),
     }),
     logoutUser: builder.mutation({
-      query: (credentials) => ({
+      query: () => ({
         url: "/auth/logout",
         method: "POST",
-        body: credentials,
+
       }),
     }),
     updateUser: builder.mutation({
@@ -91,7 +91,7 @@ export const authExtendedApi = authApiSlice.injectEndpoints({
   }),
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, logoutAuth } = authSlice.actions;
 export const {
   useLoginUserMutation,
   useRegisterUserMutation,

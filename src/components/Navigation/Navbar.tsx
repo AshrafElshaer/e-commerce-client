@@ -3,11 +3,15 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import { AiOutlineShoppingCart, AiTwotoneSetting } from "react-icons/ai";
 import { BiLogOut, BiSupport } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
-import { Cart} from "..";
+import { Cart } from "..";
 import useCategories from "../../hooks/useCategories";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectCartCount } from "../../features/cartSlice";
-import { selectCurrentUser } from "../../features/authSlice";
+import {
+  selectCurrentUser,
+  useLogoutUserMutation,
+  logoutAuth,
+} from "../../features/authSlice";
 import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
 
@@ -17,8 +21,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const dispatch = useAppDispatch();
   const cartCount = useAppSelector(selectCartCount);
   const user = useAppSelector(selectCurrentUser);
+  const [logoutUser] = useLogoutUserMutation();
 
   const toggleNavbar = () => {
     setIsMenuOpen((perv) => !perv);
@@ -59,6 +65,16 @@ const Navbar = () => {
   useEffect(() => {
     isCartOpen || isUserMenuOpen ? disableScroll() : enableScroll();
   }, [isCartOpen, isUserMenuOpen]);
+
+  const logout = async () => {
+    try {
+      const result = await logoutUser(undefined).unwrap();
+      dispatch(logoutAuth());
+      setIsUserMenuOpen(false);
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  };
 
   return (
     <div>
@@ -130,8 +146,12 @@ const Navbar = () => {
                 </li>
                 <li className='flex justify-start items-center gap-2 hover:text-orange '>
                   {" "}
-                  <BiLogOut />
-                  Log Out
+                  <button
+                    className='flex justify-start items-center gap-2'
+                    onClick={logout}>
+                    <BiLogOut />
+                    Log Out
+                  </button>
                 </li>
               </ul>
             </>
