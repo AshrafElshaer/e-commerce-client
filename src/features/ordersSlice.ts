@@ -4,33 +4,35 @@ import { TMeta } from "./categoriesSlice";
 import {} from "@reduxjs/toolkit";
 
 export type TOrder = {
-  _id: string;
+  _id?: string;
   customer: {
-    _id: string;
+    id: string;
     name: string;
     address: {
       street: string;
-      suite: string;
+      country: string;
       city: string;
-      zipcode: number;
+      zipcode: string;
     };
   };
   items: TCartItemState[];
   status: string;
-  total: number;
+  total: string;
+  VAT: string;
+  grandTotal: string;
 };
 const apiWithTags = apiSlice.enhanceEndpoints({ addTagTypes: ["Orders"] });
 
 export const ordersApiSlice = apiWithTags.injectEndpoints({
   endpoints: (builder) => ({
     getOrders: builder.query<TOrder[], string>({
-      query: (customerId) => ({
+      query: (userId) => ({
         url: "/orders",
         responseHandler: (response) => response.json(),
         transformResponse: (returnValue: TOrder[], meta: TMeta) => {
           if (!meta) return [];
           return returnValue.filter(
-            (order) => order.customer._id !== customerId
+            (order) => order.customer.id !== userId
           );
         },
       }),

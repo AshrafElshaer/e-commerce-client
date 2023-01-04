@@ -31,24 +31,6 @@ const Authentication = () => {
               </span>
             </p>
           )}
-          <div className='text-center mt-8 flex flex-col gap-4'>
-            <span>Or</span>
-            <Button className='w-full rounded-full' Icon={AiOutlineGoogle}>
-              Login With Google
-            </Button>
-            <Button
-              className='w-full rounded-full'
-              buttonType='black'
-              Icon={AiFillApple}>
-              Login With Apple
-            </Button>
-            <Button
-              className='w-full rounded-full'
-              buttonType='blue'
-              Icon={BsFacebook}>
-              Login With Facebook
-            </Button>
-          </div>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Formik, Form, FormikHelpers } from "formik";
 import { Button, FormikControl } from "../Components";
 import { checkOutValidation } from "../lib/formValidations";
@@ -7,13 +7,14 @@ import { useAppSelector } from "../app/hooks";
 import { selectCart, selectCartTotal } from "../features/cartSlice";
 import { formatPrice } from "../lib/formating";
 import { selectCurrentUser } from "../features/authSlice";
+import { TOrder, useCreateNewOrderMutation } from "../features/ordersSlice";
 
 export type TCheckoutFormState = {
   name: string;
   email: string;
-  phoneNumber: number | string;
+  phoneNumber: string;
   street: string;
-  zipcode: number | string;
+  zipcode: string;
   city: string;
   country: string;
   paymentMethod: string;
@@ -22,7 +23,6 @@ export type TCheckoutOptions = {
   key: string;
   value: string;
 }[];
-
 
 const checkoutOptions = [
   { key: "Credit Card", value: "creditCard" },
@@ -38,6 +38,9 @@ const Checkout = () => {
   const VAT = formatPrice(cartSelector * 0.0825);
   const grandTotal = formatPrice(cartSelector + cartSelector * 0.0825 + 50);
 
+  const [createNewOrder, { isLoading, isSuccess }] =
+    useCreateNewOrderMutation();
+
   const initialValues: TCheckoutFormState = {
     name: user?.name || "",
     email: user?.email || "",
@@ -49,18 +52,45 @@ const Checkout = () => {
     paymentMethod: "creditCard",
   };
 
-  const onSubmit = (
-    values: TCheckoutFormState,
-    { resetForm }: FormikHelpers<TCheckoutFormState>
-  ): void | Promise<any> => {
-    console.log(values);
+  const onSubmit = async (values: TCheckoutFormState): Promise<any> => {
+    const { name, email, phoneNumber, street, zipcode, city, country } = values;
+    // check if the user has already address information saved
+    const isAddreddSaved = Boolean(user?.address);
+
+    if (!user) return <Navigate to='/auth' />;
+
+    const newOrder: TOrder = {
+      customer: {
+        id: user._id,
+        name,
+        address: {
+          street,
+          country,
+          city,
+          zipcode,
+        },
+      },
+      items: cartItems,
+      status: "Pending",
+      total: cartTotal,
+      VAT,
+      grandTotal: grandTotal,
+    };
+
+    if (isAddreddSaved) {
+      try {
+        const result = await createNewOrder(newOrder);
+        console.log(result);
+      } catch (err: any) {
+        console.log(err);
+      }
+    }
   };
   return (
     <div className='bg-gray'>
       <button
         onClick={() => navigate(-1)}
         className='block py-8 hover:text-orange container text-left'>
-        {" "}
         Go Back
       </button>
       <div className='container flex flex-col md:flex-row  gap-8 pb-24'>

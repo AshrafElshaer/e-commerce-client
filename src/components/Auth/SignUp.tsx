@@ -76,7 +76,7 @@ const SignUp = () => {
               errors={Formik.errors}
               touched={Formik.touched}
             />
-            <Button type='submit' className='w-full rounded-full mt-4 mb-2'>
+            <Button disabled={isLoading} type='submit' className='w-full rounded-full mt-4 mb-2'>
               Sign Up
             </Button>
           </Form>
