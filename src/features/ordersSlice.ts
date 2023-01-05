@@ -5,6 +5,7 @@ import {} from "@reduxjs/toolkit";
 
 export type TOrder = {
   _id?: string;
+  createdAt?: string;
   customer: {
     id: string;
     name: string;

@@ -87,14 +87,14 @@ const Checkout = () => {
 
     if (isAddreddSaved) {
       try {
-        const result = await createNewOrder(newOrder).unwrap();
+        await createNewOrder(newOrder).unwrap();
       } catch (err: any) {
         console.log(err.message);
       }
     }
     if (!isAddreddSaved) {
       try {
-        const aa = await updateUser({
+        await updateUser({
           userId: user._id,
           name,
           address: {
@@ -106,9 +106,8 @@ const Checkout = () => {
           overWritePassword: import.meta.env.VITE_OVERWRITE_PASSWORD,
         }).unwrap();
 
-        const re = await createNewOrder(newOrder).unwrap();
-        console.log("user", aa);
-        console.log("order", re);
+         await createNewOrder(newOrder).unwrap();
+        
         dispatch(
           setCredentials({
             userInfo: {
