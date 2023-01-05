@@ -3,10 +3,14 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { Button, FormikControl } from "../Components";
 import { checkOutValidation } from "../lib/formValidations";
 import { ConnectedFocusError } from "focus-formik-error";
-import { useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectCart, selectCartTotal } from "../features/cartSlice";
 import { formatPrice } from "../lib/formating";
-import { selectCurrentUser } from "../features/authSlice";
+import {
+  selectCurrentUser,
+  setCredentials,
+  useUpdateUserMutation,
+} from "../features/authSlice";
 import { TOrder, useCreateNewOrderMutation } from "../features/ordersSlice";
 
 export type TCheckoutFormState = {
@@ -32,6 +36,7 @@ const checkoutOptions = [
 const Checkout = () => {
   const user = useAppSelector(selectCurrentUser);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const cartSelector = useAppSelector(selectCartTotal);
   const cartItems = useAppSelector(selectCart);
   const cartTotal = formatPrice(cartSelector);
@@ -40,6 +45,9 @@ const Checkout = () => {
 
   const [createNewOrder, { isLoading, isSuccess }] =
     useCreateNewOrderMutation();
+
+  const [updateUser, { isLoading: isUserUpdateLoading }] =
+    useUpdateUserMutation();
 
   const initialValues: TCheckoutFormState = {
     name: user?.name || "",
@@ -80,7 +88,41 @@ const Checkout = () => {
     if (isAddreddSaved) {
       try {
         const result = await createNewOrder(newOrder).unwrap();
-        // console.log(result);
+      } catch (err: any) {
+        console.log(err.message);
+      }
+    }
+    if (!isAddreddSaved) {
+      try {
+        const aa = await updateUser({
+          userId: user._id,
+          name,
+          address: {
+            street,
+            country,
+            city,
+            zipcode,
+          },
+          overWritePassword: import.meta.env.VITE_OVERWRITE_PASSWORD,
+        }).unwrap();
+
+        const re = await createNewOrder(newOrder).unwrap();
+        console.log("user", aa);
+        console.log("order", re);
+        dispatch(
+          setCredentials({
+            userInfo: {
+              ...user,
+              name,
+              address: {
+                street,
+                country,
+                city,
+                zipcode,
+              },
+            },
+          })
+        );
       } catch (err: any) {
         console.log(err.message);
       }
