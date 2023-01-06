@@ -12,3 +12,4 @@ export { default as Footer } from "./Footer";
 export { default as FormikControl } from "./Form/FormikControl";
 export { default as Login } from "./Auth/Login";
 export { default as SignUp } from "./Auth/SignUp";
+export { default as ConfirmationModel } from "./ConfirmationModel";

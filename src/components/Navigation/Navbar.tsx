@@ -14,6 +14,7 @@ import {
 } from "../../features/authSlice";
 import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
+import { disableScroll, enableScroll } from "../../lib/scroll";
 
 const Navbar = () => {
   const { categories } = useCategories();
@@ -41,21 +42,7 @@ const Navbar = () => {
     setIsMenuOpen(false);
     setIsCartOpen(false);
   };
-  function disableScroll() {
-    // To get the scroll position of current webpage
-    const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    const LeftScroll =
-      window.pageXOffset || document.documentElement.scrollLeft;
-
-    // if scroll happens, set it to the previous value
-    window.onscroll = function () {
-      window.scrollTo(LeftScroll, TopScroll);
-    };
-  }
-
-  function enableScroll() {
-    window.onscroll = function () {};
-  }
+  
   useEffect(() => {
     setIsCartOpen(false);
     setIsMenuOpen(false);

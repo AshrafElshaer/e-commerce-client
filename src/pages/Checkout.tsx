@@ -1,6 +1,6 @@
 import { Navigate, useNavigate } from "react-router-dom";
-import { Formik, Form, FormikHelpers } from "formik";
-import { Button, FormikControl } from "../Components";
+import { Formik, Form } from "formik";
+import { Button, ConfirmationModel, FormikControl } from "../Components";
 import { checkOutValidation } from "../lib/formValidations";
 import { ConnectedFocusError } from "focus-formik-error";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -12,6 +12,8 @@ import {
   useUpdateUserMutation,
 } from "../features/authSlice";
 import { TOrder, useCreateNewOrderMutation } from "../features/ordersSlice";
+import { useEffect, useState } from "react";
+import { disableScroll, enableScroll } from "../lib/scroll";
 
 export type TCheckoutFormState = {
   name: string;
@@ -35,6 +37,7 @@ const checkoutOptions = [
 
 const Checkout = () => {
   const user = useAppSelector(selectCurrentUser);
+  const [isModelOpen, setIsModelOpen] = useState(true);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cartSelector = useAppSelector(selectCartTotal);
@@ -42,12 +45,16 @@ const Checkout = () => {
   const cartTotal = formatPrice(cartSelector);
   const VAT = formatPrice(cartSelector * 0.0825);
   const grandTotal = formatPrice(cartSelector + cartSelector * 0.0825 + 50);
+  // cartItems grandTotal
 
-  const [createNewOrder, { isLoading, isSuccess }] =
-    useCreateNewOrderMutation();
+  const [createNewOrder, { isLoading }] = useCreateNewOrderMutation();
 
   const [updateUser, { isLoading: isUserUpdateLoading }] =
     useUpdateUserMutation();
+
+  function closeModel() {
+    setIsModelOpen(false);
+  }
 
   const initialValues: TCheckoutFormState = {
     name: user?.name || "",
@@ -63,9 +70,9 @@ const Checkout = () => {
   const onSubmit = async (values: TCheckoutFormState): Promise<any> => {
     const { name, email, phoneNumber, street, zipcode, city, country } = values;
     // check if the user has already address information saved
-    const isAddreddSaved = Boolean(user?.address);
 
-    if (!user) return <Navigate to='/auth' />;
+    if (!user) return navigate("/auth");
+    const isAddreddSaved = Boolean(user?.address);
 
     const newOrder: TOrder = {
       customer: {
@@ -87,7 +94,9 @@ const Checkout = () => {
 
     if (isAddreddSaved) {
       try {
-        await createNewOrder(newOrder).unwrap();
+        await createNewOrder(newOrder)
+          .unwrap()
+          .then(() => setIsModelOpen(true));
       } catch (err: any) {
         console.log(err.message);
       }
@@ -106,8 +115,10 @@ const Checkout = () => {
           overWritePassword: import.meta.env.VITE_OVERWRITE_PASSWORD,
         }).unwrap();
 
-         await createNewOrder(newOrder).unwrap();
-        
+        await createNewOrder(newOrder)
+          .unwrap()
+          .then(() => setIsModelOpen(true));
+
         dispatch(
           setCredentials({
             userInfo: {
@@ -127,6 +138,12 @@ const Checkout = () => {
       }
     }
   };
+  useEffect(() => {
+    isModelOpen && setIsModelOpen(false);
+  }, []);
+  useEffect(() => {
+    isModelOpen ? disableScroll() : enableScroll();
+  }, [isModelOpen]);
   return (
     <div className='bg-gray'>
       <button
@@ -274,11 +291,22 @@ const Checkout = () => {
             <span className='text-black/40 uppercase'>grand total</span>
             <span className='text-bold text-xl text-orange'>{grandTotal}</span>
           </div>
-          <Button type='submit' form='checkout' className='w-full'>
+          <Button
+            type='submit'
+            form='checkout'
+            disabled={isLoading}
+            className='w-full'>
             CONTINUE & PAY
           </Button>
         </section>
       </div>
+      {isModelOpen ? (
+        <ConfirmationModel
+          closeModel={closeModel}
+          cartItems={cartItems}
+          grandTotal={grandTotal}
+        />
+      ) : null}
     </div>
   );
 };
