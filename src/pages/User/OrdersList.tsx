@@ -23,7 +23,7 @@ const OrdersList = () => {
           return (
             <div
               key={order._id}
-              className='flex items-center gap-8 px-6 py-2 rounded-md shadow-lg'>
+              className='flex items-center gap-4 px-6 py-2 rounded-md shadow-lg'>
               <span className='font-bold'>
                 {formatDate(order.createdAt as string)}
               </span>
@@ -32,7 +32,7 @@ const OrdersList = () => {
                   key={item._id}
                   src={item.image}
                   alt={item.name}
-                  className='rounded-lg w-16'
+                  className='rounded-lg w-10 md:w-16'
                 />
               ))}
               <span className='ml-auto'>{order.status}</span>

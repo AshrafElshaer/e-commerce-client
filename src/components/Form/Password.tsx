@@ -8,17 +8,9 @@ import {
 } from "formik";
 import { TCheckoutOptions } from "../../Pages/Checkout";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { TFormikErrorsAndTouched } from "./Email";
 
-export type TFormikErrorsAndTouched<T> = {
-  [key: string]: T;
-  name: T;
-  email: T;
-  phoneNumber: T;
-  address: T;
-  zipcide: T;
-  city: T;
-  paymentMethod: T;
-};
+
 export type TInputProps = {
   control?: string;
   label?: string;

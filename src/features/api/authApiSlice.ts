@@ -19,6 +19,7 @@ const baseQuery = fetchBaseQuery({
     }
     return headers;
   },
+  responseHandler: (response) => response.json(),
 });
 
 const baseQueryWithReauth: BaseQueryFn<

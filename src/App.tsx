@@ -37,8 +37,8 @@ const App = () => {
                   <Route path='address' element={<Address />} />
                   <Route path='orders' element={<OrdersList />} />
                 </Route>
+                <Route path='support' element={<ContactSupport />} />
               </Route>
-              <Route path='support' element={<ContactSupport />} />
               <Route path='no-match' element={<NoMatch />} />
               <Route path='*' element={<NoMatch />} />
             </Route>

@@ -58,3 +58,10 @@ export const addressValidation = yup.object({
   country: yup.string().required("Required"),
   password: yup.string().required("Required").min(6),
 });
+
+export const contactUsValidation = yup.object({
+  name: yup.string().required("Required"),
+  email: yup.string().email("Invalid Email Format").required("Required"),
+  title: yup.string().required("Required"),
+  message: yup.string().required("Required"),
+});

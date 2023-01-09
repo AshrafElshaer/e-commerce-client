@@ -61,6 +61,14 @@ export const ordersApiSlice = apiWithTags.injectEndpoints({
       }),
       invalidatesTags: ["Orders"],
     }),
+    sendMessage: builder.mutation({
+      query: (message) => ({
+        url: `/support`,
+        method: "POST",
+        body: message,
+        responseHandler: response => response.json()
+      }),
+    }),
   }),
 });
 
@@ -69,4 +77,5 @@ export const {
   useCreateNewOrderMutation,
   useDeleteOrderMutation,
   useUpdateOrderMutation,
+  useSendMessageMutation
 } = ordersApiSlice;

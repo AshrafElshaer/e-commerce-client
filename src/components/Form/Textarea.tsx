@@ -1,17 +1,8 @@
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect } from "react";
 import { Field, ErrorMessage, FormikErrors, FormikTouched } from "formik";
 import { TCheckoutOptions } from "../../Pages/Checkout";
+import { TFormikErrorsAndTouched } from "./Email";
 
-export type TFormikErrorsAndTouched<T> = {
-  [key: string]: T;
-  name: T;
-  email: T;
-  phoneNumber: T;
-  address: T;
-  zipcide: T;
-  city: T;
-  paymentMethod: T;
-};
 export type TInputProps = {
   control?: string;
   label?: string;
@@ -23,14 +14,14 @@ export type TInputProps = {
   options?: TCheckoutOptions;
 };
 
-const Input = (props: TInputProps) => {
+const Textarea = (props: TInputProps) => {
   const {
     label,
     name,
     styles = "flex-1",
     errors,
     touched,
-    control,
+
     placeholder,
     // ...rest
   } = props;
@@ -40,7 +31,6 @@ const Input = (props: TInputProps) => {
     errors && touched && errors[name] && touched[name]
       ? setIsError(true)
       : setIsError(false);
-    // console.log(rest)
   }, [errors, touched]);
 
   return (
@@ -52,13 +42,13 @@ const Input = (props: TInputProps) => {
         </ErrorMessage>
       </label>
       <Field
-        type={control}
+        as='textarea'
         id={name}
         name={name}
         placeholder={placeholder}
-        // {...rest}
         autoComplete='off'
-        className={`w-full py-2 px-4 border-2 ${
+        rows={5}
+        className={`w-full  resize-none py-2 px-4 border-2 ${
           isError ? "border-red-600 " : "border-gray-300"
         }  rounded-lg focus:outline-none focus:border-orange hover:border-orange cursor-pointer focus:cursor-text caret-orange`}
       />
@@ -66,4 +56,4 @@ const Input = (props: TInputProps) => {
   );
 };
 
-export default Input;
+export default Textarea;

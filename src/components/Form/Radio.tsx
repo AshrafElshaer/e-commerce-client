@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { Field, FieldInputProps, FieldProps } from "formik";
-import type { TInputProps } from "./Input";
-
+import type { TInputProps } from "./Text";
 
 const Radio = (props: TInputProps) => {
   const { label, name, options, ...rest } = props;
@@ -15,7 +14,11 @@ const Radio = (props: TInputProps) => {
             return (
               <div
                 key={option.key}
-                className={`w-full p-4 flex items-center gap-6 border-2  rounded-lg my-4 ${field.value === option.value ? 'border-orange' :"border-gray-300"}`}>
+                className={`w-full p-4 flex items-center gap-6 border-2  rounded-lg my-4 ${
+                  field.value === option.value
+                    ? "border-orange"
+                    : "border-gray-300"
+                }`}>
                 <input
                   type='radio'
                   id={option.value}
@@ -23,7 +26,9 @@ const Radio = (props: TInputProps) => {
                   value={option.value}
                   checked={field.value === option.value}
                 />
-                <label htmlFor={option.value} className='cursor-pointer font-bold'>
+                <label
+                  htmlFor={option.value}
+                  className='cursor-pointer font-bold'>
                   {option.key}
                 </label>
               </div>
