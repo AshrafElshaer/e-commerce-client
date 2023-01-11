@@ -14,7 +14,7 @@ import logger from "redux-logger";
 import persistStore from "redux-persist/es/persistStore";
 import { authApiSlice } from "../features/api/authApiSlice";
 
-const middlewares = [apiSlice.middleware, authApiSlice.middleware, logger];
+const middlewares = [apiSlice.middleware, authApiSlice.middleware];
 
 const persistConfig = {
   key: "root",
@@ -36,7 +36,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }).concat(middlewares),
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: false,
 });
 
 export const persistor = persistStore(store);
