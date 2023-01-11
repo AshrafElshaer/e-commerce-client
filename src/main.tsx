@@ -9,9 +9,10 @@ import { BrowserRouter } from "react-router-dom";
 import { ScrollToTop } from "./Components";
 import { PersistGate } from "redux-persist/integration/react";
 import { categoriesApiSlice } from "./features/categoriesSlice";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
+if (process.env.NODE_ENV === "production") disableReactDevTools();
 store.dispatch(categoriesApiSlice.endpoints.getCategories.initiate());
-
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
