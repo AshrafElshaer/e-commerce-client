@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from ".";
 const Header = () => {
   return (
@@ -8,12 +9,14 @@ const Header = () => {
             <span className='text-gray/40 tracking-[1rem] text-sm  '>
               NEW PRODUCT
             </span>
-            <h1 className=' text-4xl md:text-5xl '>XX99 Mark II HeadphoneS</h1>
+            <h1 className='text-4xl md:text-5xl'>XX99 Mark II Headphone</h1>
             <p className='text-gray/70'>
               Experience natural, lifelike audio and exceptional build quality
               made for the passionate music enthusiast.
             </p>
-            <Button className='w-44 lg:mx-0'>SEE PRODUCT</Button>
+            <Link to='/headphones/63741abf0490cb9b435c6a09'>
+              <Button className='w-44 lg:mx-0'>SEE PRODUCT</Button>
+            </Link>
           </div>
           <div role='backgroundImg'></div>
         </header>

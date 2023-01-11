@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import useCategories from "../hooks/useCategories";
 import {
   AiFillFacebook,
   AiOutlineTwitter,
   AiOutlineInstagram,
 } from "react-icons/ai";
+import { useGetCategoriesQuery } from "../features/categoriesSlice";
 
 const Footer = () => {
-  const { categories } = useCategories();
-  return (
+  const { data: categories } = useGetCategoriesQuery(undefined);  return (
     <footer className='bg-black text-white text-center sm:text-left py-14'>
       <div className='container'>
         <div className=' w-full md:flex md:items-center mb-8'>
@@ -25,7 +24,7 @@ const Footer = () => {
                 home
               </Link>
             </li>
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <li key={category.category}>
                 <Link
                   to={`/${category.category}`}

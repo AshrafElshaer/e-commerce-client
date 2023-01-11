@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TCategory } from "../../features/categoriesSlice";
+import { TCategory, useGetCategoriesQuery } from "../../features/categoriesSlice";
 
 type Props = {
-  categories: TCategory[];
   pathName: string;
 };
-const DesktopNav = ({ categories, pathName }: Props) => {
+const DesktopNav = ({  pathName }: Props) => {
+  const { data: categories } = useGetCategoriesQuery();
+
   return (
     <ul className='hidden md:flex w-full justify-center gap-8 font-bold uppercase text-xs'>
       <li>
@@ -17,7 +18,7 @@ const DesktopNav = ({ categories, pathName }: Props) => {
         </Link>
       </li>
 
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <li key={category.category}>
           <Link
             to={`/${category.category}`}

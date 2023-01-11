@@ -36,7 +36,7 @@ const Login = () => {
       resetForm();
       navigate("/");
     } catch (err: any) {
-      setErrMsg(err.data.message);
+      setErrMsg(err.message);
     }
   };
   return (

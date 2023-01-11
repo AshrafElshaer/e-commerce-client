@@ -10,7 +10,8 @@ import { ScrollToTop } from "./Components";
 import { PersistGate } from "redux-persist/integration/react";
 import { categoriesApiSlice } from "./features/categoriesSlice";
 
-// store.dispatch(categoriesApiSlice.endpoints.getCategories.initiate(undefined));
+store.dispatch(categoriesApiSlice.endpoints.getCategories.initiate());
+
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -18,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ApiProvider api={apiSlice}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            {/* <ScrollToTop /> */}
+            <ScrollToTop />
             <App />
           </PersistGate>
         </Provider>

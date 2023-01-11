@@ -3,8 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { Button, AboutUs } from "../Components";
 import { addToCart } from "../features/cartSlice";
-import { TProduct } from "../features/categoriesSlice";
-import useCategories from "../hooks/useCategories";
+import { TCategory, TProduct, useGetCategoriesQuery } from "../features/categoriesSlice";
 import { formatPrice } from "../lib/formating";
 
 const getMultipleRandom = (arr: TProduct[], num: number): TProduct[] => {
@@ -18,14 +17,14 @@ const ProductPage = () => {
   const dispatch = useAppDispatch();
   const { productId, category } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const { categories } = useCategories();
+  const { data: categories } = useGetCategoriesQuery(undefined);
 
   const foundProduct = categories
-    .find((cat) => cat.category === category)
+    ?.find((cat) => cat.category === category)
     ?.products.find((product) => product._id === productId);
 
   const youMayAlsoLikeArray = categories
-    .find((cat) => cat.category === category)
+    ?.find((cat) => cat.category === category)
     ?.products.filter((product) => product._id !== foundProduct?._id)
     .slice(0, 3);
 
@@ -53,7 +52,7 @@ const ProductPage = () => {
     const exittingYouMayLike = youMayAlsoLikeArray?.map((item) => item._id);
     const allProducts = [];
 
-    for (const category of categories) {
+    for (const category of categories as TCategory[]) {
       for (const product of category.products) {
         if (
           product._id !== foundProduct?._id &&
@@ -178,7 +177,7 @@ const ProductPage = () => {
               {youMayAlsoLike
                 ? youMayAlsoLike.map((productYouMightLike) => {
                     let categoryName: string = "";
-                    const getCategoryName = categories.map((category) =>
+                    const getCategoryName = categories?.map((category) =>
                       category.products.map((product) => {
                         if (product._id === productYouMightLike._id) {
                           return (categoryName = category.category);

@@ -1,6 +1,7 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Footer, Navbar } from "./Components";
+import { Footer, Navbar, Loader } from "./Components";
+import { useGetCategoriesQuery } from "./features/categoriesSlice";
 import "./index.css";
 import Checkout from "./Pages/Checkout";
 import ProtectedRoutes from "./Pages/ProtectedRoutes";
@@ -18,7 +19,7 @@ const NoMatch = lazy(() => import("./Pages/NoMatch"));
 
 const App = () => {
   return (
-    <Suspense>
+    <Suspense fallback={<Loader />}>
       <div role='body' className='w-full font-manrope'>
         <Navbar />
         <main>

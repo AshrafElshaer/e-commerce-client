@@ -4,7 +4,6 @@ import { AiOutlineShoppingCart, AiTwotoneSetting } from "react-icons/ai";
 import { BiLogOut, BiSupport } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
 import { Cart } from "..";
-import useCategories from "../../hooks/useCategories";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectCartCount } from "../../features/cartSlice";
 import {
@@ -15,9 +14,13 @@ import {
 import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
 import { disableScroll, enableScroll } from "../../lib/scroll";
+import {
+  TCategory,
+  useGetCategoriesQuery,
+} from "../../features/categoriesSlice";
 
 const Navbar = () => {
-  const { categories } = useCategories();
+  const { data: categories } = useGetCategoriesQuery(undefined);
   const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -42,7 +45,7 @@ const Navbar = () => {
     setIsMenuOpen(false);
     setIsCartOpen(false);
   };
-  
+
   useEffect(() => {
     setIsCartOpen(false);
     setIsMenuOpen(false);
@@ -88,16 +91,10 @@ const Navbar = () => {
             audiophile
           </a>
           {/* MOBILE NAVBAR */}
-          {isMenuOpen ? (
-            <MobileNav
-              isMenuOpen={isMenuOpen}
-              categories={categories}
-              toggleNavbar={toggleNavbar}
-            />
-          ) : null}
+          {isMenuOpen ? <MobileNav toggleNavbar={toggleNavbar} /> : null}
 
           {/* DESKTOP NAVBAR */}
-          <DesktopNav categories={categories} pathName={pathname} />
+          <DesktopNav pathName={pathname} />
 
           {/* USER MENU */}
           {user ? (

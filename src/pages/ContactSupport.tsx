@@ -41,7 +41,7 @@ const ContactSupport = () => {
   return (
     <section className='container py-8'>
       <h1 className='text-2xl my-4 text-center'>Shoot us a message !</h1>
-      <p>{displayMsg}</p>
+      <p className='text-2xl font-bold uppercase'>{displayMsg}</p>
       <div className='my-8 py-4 flex flex-col gap-6 md:flex-row-reverse md:gap-16 md:justify-between'>
         <img
           src={chactImg}

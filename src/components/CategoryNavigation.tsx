@@ -1,18 +1,13 @@
 import React, { useEffect } from "react";
-import useCategories from "../hooks/useCategories";
 import { CategoryCard } from ".";
-import { TCategory } from "../features/categoriesSlice";
+import { TCategory, useGetCategoriesQuery } from "../features/categoriesSlice";
 
 const CategoryNavigation = () => {
-  const { categories } = useCategories();
-
-  const selectedCategories = () => {
-    if (categories.length < 4) return categories;
-  };
+  const { data: categories } = useGetCategoriesQuery(undefined);
 
   return (
     <section className=' sm:flex sm:justify-center sm:gap-12 sm:flex-wrap my-12 container'>
-      {categories.map((cat) => {
+      {categories?.map((cat) => {
         const { category, categoryImage, _id } = cat;
         return (
           <CategoryCard

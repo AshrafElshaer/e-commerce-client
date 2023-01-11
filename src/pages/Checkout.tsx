@@ -106,6 +106,7 @@ const Checkout = () => {
         await updateUser({
           userId: user._id,
           name,
+          phoneNumber,
           address: {
             street,
             country,

@@ -6,17 +6,17 @@ const AboutUs = () => {
       <CategoryNavigation />
       <section className='flex flex-col gap-8 md:flex-row-reverse text-center lg:text-left my-24 container'>
         <img
-          src='/src/assets/shared/mobile/image-best-gear.jpg'
+          src='https://nookeauq.sirv.com/Images/image-best-gear.jpg'
           alt='best-gear'
           className='rounded-lg sm:hidden'
         />
         <img
-          src='/src/assets/shared/tablet/image-best-gear.jpg'
+          src='https://nookeauq.sirv.com/Images/tablet-image-best-gear.jpg'
           alt='best-gear'
           className='rounded-lg hidden sm:block md:hidden'
         />
         <img
-          src='/src/assets/shared/desktop/image-best-gear.jpg'
+          src='https://nookeauq.sirv.com/Images/desktop-image-best-gear.jpg'
           alt='best-gear'
           className='rounded-lg hidden w-1/2 md:block'
         />
