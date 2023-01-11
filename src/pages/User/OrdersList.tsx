@@ -11,7 +11,7 @@ const OrdersList = () => {
 
   const { data: orders } = useGetOrdersQuery(user?._id as string);
   return (
-    <section className='flex flex-col gap-4 max-h-[28rem] overflow-y-scroll'>
+    <section className='flex flex-col gap-4 max-h-[28rem] overflow-y-scroll scrollbar-hide'>
       {orders
         ?.slice()
         .sort(

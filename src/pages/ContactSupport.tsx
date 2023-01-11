@@ -26,16 +26,17 @@ const ContactSupport = () => {
 
   const onSubmit = async (
     values: TContactSate,
-    { resetForm }: FormikHelpers<TContactSate>
+    {  setValues}: FormikHelpers<TContactSate>
   ): Promise<any> => {
     try {
       const result = await sendMessage({
         userId: user?._id,
         ...values,
       }).unwrap();
+      setValues(initialValues)
       setDisplayMsg(result.message);
     } catch (err: any) {
-      setDisplayMsg(err.data.message);
+      setDisplayMsg(err.message);
     }
   };
   return (
