@@ -8,11 +8,11 @@ Overview
    - View the optimal layout for the app depending on their device's screen size
    - Create, read, and update User & Orders
 
-   Built with
-   
-    - TypeScript
-    - React JS 
-    - Redux ToolKit & RTK Query
-    - Tailwind CSS
+Built with
+   - TypeScript
+   - React JS 
+   - Redux ToolKit & RTK Query
+   - Tailwind CSS
+   - Node js , Express js , MongoDB & JWT  (BACKEND)
 
 
