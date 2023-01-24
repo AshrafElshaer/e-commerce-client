@@ -1,14 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../../app/store";
 
-// export type TMeta = { requestId: string; timestamp: number };
 
-const serverUrl = import.meta.env.VITE_SERVER_URL;
+const serverUrl = "https://audiophile-api-mh1t.onrender.com";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: serverUrl,
-    credentials: "same-origin",
+    credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {

@@ -7,7 +7,7 @@ import type {
   CreateApi,
 } from "@reduxjs/toolkit/query";
 import { RootState } from "../../app/store";
-const serverUrl = import.meta.env.VITE_SERVER_URL;
+const serverUrl = "https://audiophile-api-mh1t.onrender.com";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: serverUrl,

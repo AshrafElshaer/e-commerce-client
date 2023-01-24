@@ -8,7 +8,7 @@ import CartItem from "./CartItem";
 type Props = {
   closeModel: () => void;
   cartItems: TCartItemState[];
-  grandTotal: string;
+  grandTotal: number;
 };
 
 const ConfirmationModel = ({ closeModel, cartItems, grandTotal }: Props) => {
@@ -40,15 +40,14 @@ const ConfirmationModel = ({ closeModel, cartItems, grandTotal }: Props) => {
               </span>
             </div>
             <p className='text-center mb-4 text-black/50'>
-              {
-                cartItems.length > 1 ? ` and ${cartItems.length - 1} other item(s)` : null
-              }
-              
+              {cartItems.length > 1
+                ? ` and ${cartItems.length - 1} other item(s)`
+                : null}
             </p>
           </div>
           <div className='bg-black p-4 rounded-r-lg flex-1 grid place-content-center sm:text-lg'>
             <h3 className='text-gray/60 mb-4 '>GRAND TOTAL</h3>
-            <p className='text-white font-bold '>{grandTotal}</p>
+            <p className='text-white font-bold '>{formatPrice(grandTotal)}</p>
           </div>
         </div>
         <Link to='/'>

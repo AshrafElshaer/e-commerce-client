@@ -40,12 +40,11 @@ const Checkout = () => {
   const [isModelOpen, setIsModelOpen] = useState(true);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const cartSelector = useAppSelector(selectCartTotal);
+  const cartTotal = useAppSelector(selectCartTotal);
   const cartItems = useAppSelector(selectCart);
-  const cartTotal = formatPrice(cartSelector);
-  const VAT = formatPrice(cartSelector * 0.0825);
-  const grandTotal = formatPrice(cartSelector + cartSelector * 0.0825 + 50);
-  // cartItems grandTotal
+  const VAT = cartTotal * 0.0825;
+  const grandTotal = cartTotal + cartTotal * 0.0825 + 50;
+
 
   const [createNewOrder, { isLoading }] = useCreateNewOrderMutation();
 
@@ -89,7 +88,7 @@ const Checkout = () => {
       status: "Pending",
       total: cartTotal,
       VAT,
-      grandTotal: grandTotal,
+      grandTotal,
     };
 
     if (isAddreddSaved) {
@@ -278,7 +277,7 @@ const Checkout = () => {
           {/* //////////////////////// */}
           <div className='flex justify-between mb-2'>
             <span className='text-black/40 uppercase'>total</span>
-            <span className='text-bold text-xl'>{cartTotal}</span>
+            <span className='text-bold text-xl'>{formatPrice(cartTotal)}</span>
           </div>
           <div className='flex justify-between mb-2'>
             <span className='text-black/40 uppercase'>shipping</span>
@@ -286,11 +285,11 @@ const Checkout = () => {
           </div>
           <div className='flex justify-between mb-2'>
             <span className='text-black/40 uppercase'>vat(8.25%)</span>
-            <span className='text-bold text-xl'>{VAT}</span>
+            <span className='text-bold text-xl'>{formatPrice(VAT)}</span>
           </div>
           <div className='flex justify-between mb-8'>
             <span className='text-black/40 uppercase'>grand total</span>
-            <span className='text-bold text-xl text-orange'>{grandTotal}</span>
+            <span className='text-bold text-xl text-orange'>{formatPrice(grandTotal)}</span>
           </div>
           <Button
             type='submit'

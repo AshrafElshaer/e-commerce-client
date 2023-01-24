@@ -2,7 +2,6 @@ import {
   configureStore,
   ThunkAction,
   Action,
-  getDefaultMiddleware,
   combineReducers,
 } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
@@ -10,7 +9,6 @@ import { persistReducer } from "redux-persist";
 import { apiSlice } from "../features/api/apiSlice";
 import authReducer from "../features/authSlice";
 import cartReducer from "../features/cartSlice";
-import logger from "redux-logger";
 import persistStore from "redux-persist/es/persistStore";
 import { authApiSlice } from "../features/api/authApiSlice";
 

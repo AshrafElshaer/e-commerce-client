@@ -18,9 +18,9 @@ export type TOrder = {
   };
   items: TCartItemState[];
   status: string;
-  total: string;
-  VAT: string;
-  grandTotal: string;
+  total: number;
+  VAT: number;
+  grandTotal: number;
 };
 const apiWithTags = apiSlice.enhanceEndpoints({ addTagTypes: ["Orders"] });
 
