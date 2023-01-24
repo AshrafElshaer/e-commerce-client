@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selectCurrentUser } from "../../features/authSlice";
 import { useGetOrdersQuery } from "../../features/ordersSlice";
-import { formatDate } from "../../lib/formating";
+import { formatDate, formatPrice } from "../../lib/formating";
 
 const OrdersList = () => {
   const user = useAppSelector(selectCurrentUser);
@@ -37,7 +37,7 @@ const OrdersList = () => {
                   />
                 ))}
                 <span className='ml-auto'>{order.status}</span>
-                <span className='font-bold'>{order.grandTotal}</span>
+                <span className='font-bold'>{formatPrice(order.grandTotal)}</span>
               </div>
             );
           })
